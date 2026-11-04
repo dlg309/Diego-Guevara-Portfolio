@@ -1,0 +1,177 @@
+[
+  {
+    "id": "alpfa",
+    "number": "01",
+    "kind": "Collaborative · Mobile app",
+    "status": "In development",
+    "title": "ALPFA NJIT App",
+    "summary": "A chapter mobile app for finding events, meeting the E-Board, and sharing photos.",
+    "tags": [
+      "React Native",
+      "Expo",
+      "TypeScript"
+    ],
+    "overview": "A collaborative mobile app for the ALPFA NJIT chapter, bringing chapter events, E-Board profiles, and photo sharing into one place.",
+    "sections": [
+      {
+        "title": "The problem",
+        "text": "Give chapter members a convenient place to find events, learn about the E-Board, and engage with the chapter."
+      },
+      {
+        "title": "My contribution",
+        "text": "I contributed E-Board member information and headshots, including image updates and profile changes. I also worked on error fixes. The GitHub repository belongs to my project partner, AnabhayanA."
+      },
+      {
+        "title": "What the team built",
+        "text": "The app code includes chapter calendar events and reminders, an E-Board directory, and a capture flow for selecting or taking photos and sharing them through a backend. The camera flow includes filters and optional location labels."
+      },
+      {
+        "title": "Status & limitations",
+        "text": "The project documentation says core features are implemented, with final visual polish, cross-device QA, and production builds still ahead. The separately deployed backend is not included in the repository; I did not retest its integrations for this portfolio."
+      }
+    ],
+    "links": [
+      {
+        "label": "View partner’s repository",
+        "url": "https://github.com/AnabhayanA/alpfa-njit-app"
+      },
+      {
+        "label": "See my E-Board update",
+        "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/768aa0d"
+      }
+    ]
+  },
+  {
+    "id": "zipheatmap",
+    "number": "02",
+    "kind": "Individual · Operations",
+    "status": "Packaged application",
+    "title": "ZipHeatMap",
+    "summary": "A ZIP-code mapping tool I developed to help my department understand where donors come from.",
+    "tags": [
+      "MATLAB",
+      "Data validation",
+      "Mapping"
+    ],
+    "overview": "I developed ZipHeatMap for my operations department to turn ZIP-code data into a geographic view of where donors come from.",
+    "sections": [
+      {
+        "title": "The problem",
+        "text": "The department needed a way to explore the geographic distribution of donors and make ZIP-code information easier to review."
+      },
+      {
+        "title": "My contribution",
+        "text": "I developed a MATLAB application that accepts ZIP-code data and brings validation, state-level summaries, filtering, and mapping into one workflow."
+      },
+      {
+        "title": "How it works",
+        "text": "The application matches ZIP codes against a reference spreadsheet, identifies invalid or unmatched entries, and summarizes data by state. Users can select states, view a ZIP-code frequency map, and export plotted data or a map image."
+      },
+      {
+        "title": "Checks & limitations",
+        "text": "The application instructions describe the data checks and export workflow. This portfolio description is based on those instructions and my account of its purpose; the packaged Windows app was not rerun for this portfolio. It requires MATLAB Runtime R2025b."
+      },
+      {
+        "title": "Privacy",
+        "text": "The portfolio describes the workflow without publishing donor records, input spreadsheets, or maps based on donor data."
+      }
+    ],
+    "links": []
+  },
+  {
+    "id": "tempo",
+    "number": "03",
+    "kind": "Collaborative project",
+    "status": "Rebuild in progress",
+    "title": "Tempo",
+    "summary": "A collaborative planner that turns tasks, available time, and commitments into a reviewable schedule.",
+    "tags": [
+      "Next.js",
+      "PostgreSQL",
+      "Gemini"
+    ],
+    "overview": "Tempo started as a collaborative planning project. Its newer local rebuild combines task and calendar planning with an optional Gemini assistant.",
+    "sections": [
+      {
+        "title": "The problem",
+        "text": "Help people fit tasks around commitments and deadlines while keeping them in control of the resulting plan."
+      },
+      {
+        "title": "My contribution",
+        "text": "For the earlier hackathon version, I configured PostgreSQL connectivity and checked FastAPI operations. I also worked with a coding agent on the newer rebuild, reviewing the planning and calendar work and its documented checks."
+      },
+      {
+        "title": "Design decisions",
+        "text": "The rebuild uses a deterministic planner that works without an AI key. People review proposed changes before applying them; calendar files and subscribed feeds are snapshots, not instant two-way sync."
+      },
+      {
+        "title": "What was checked",
+        "text": "The rebuild’s notes report unit, database, and desktop/mobile browser checks, including tests using simulated services. Live checks documented successful calendar flows as well as a later Gemini provider outage; they do not establish a clean full live desktop pass."
+      },
+      {
+        "title": "Version & limitations",
+        "text": "The local Next.js rebuild is ahead of its published branch and has not been deployed to production. The default repository link opens the earlier React/Vite and FastAPI version; the linked rebuild branch may not include the latest local changes."
+      }
+    ],
+    "links": [
+      {
+        "label": "View Tempo repository",
+        "url": "https://github.com/dlg309/Tempo-AI-Assistant"
+      },
+      {
+        "label": "View published rebuild branch",
+        "url": "https://github.com/dlg309/Tempo-AI-Assistant/tree/revamp/tempo-next"
+      }
+    ]
+  },
+  {
+    "id": "rps",
+    "number": "04",
+    "kind": "Individual · IS218 coursework",
+    "status": "Completed coursework",
+    "title": "Rock, Paper, Scissors",
+    "summary": "A small game with a bigger question: how do you know a result is right?",
+    "tags": [
+      "Python",
+      "Flask",
+      "Testing"
+    ],
+    "overview": "A browser-based game for playing a round against the computer, with recent history and session streaks.",
+    "sections": [
+      {
+        "title": "The problem",
+        "text": "Make each round understandable and dependable: show both moves, return the right outcome, and let someone play again."
+      },
+      {
+        "title": "My contribution & process",
+        "text": "I agreed on the rules and checks, requested the recent-history and streak extensions, and reviewed a round and keyboard replay. A coding agent implemented changes from the provided starter and ran checks; the project record separates that assistance from my own observations."
+      },
+      {
+        "title": "Decisions",
+        "text": "Rounds stay independent. Recent games and streaks are kept in a temporary browser session rather than a database or account."
+      },
+      {
+        "title": "What was checked",
+        "text": "The project record reports checks for all nine outcomes, invalid input, request behavior, and browser replay. Its final local run recorded 38 non-browser and 10 Chromium tests passing, alongside formatting and lint checks."
+      },
+      {
+        "title": "Limitation & next step",
+        "text": "Refreshing a completed submission can replay the last move. A redirect after submission is a documented follow-up. The record distinguishes automated checks from the round I personally reviewed."
+      }
+    ],
+    "links": [
+      {
+        "label": "View repository",
+        "url": "https://github.com/dlg309/RPS_Game218"
+      },
+      {
+        "label": "Read the project record",
+        "url": "https://github.com/dlg309/RPS_Game218/blob/main/SPEC.md"
+      },
+      {
+        "label": "See the pull request",
+        "url": "https://github.com/dlg309/RPS_Game218/pull/2"
+      }
+    ]
+  }
+]

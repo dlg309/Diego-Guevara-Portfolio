@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.preview/
+private/*
+!private/README.md
+.DS_Store
+
+# Local ZipHeatMap package and spreadsheets; keep out of commits.
+docs/output/
+
+# Temporary project copies contain local settings and personal data.
+docs/Tempo-AI-Assistant/
+docs/alpfa-njit-app/

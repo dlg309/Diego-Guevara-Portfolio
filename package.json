@@ -1,0 +1,11 @@
+{
+  "name": "diego-guevara-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && node scripts/serve.mjs dist",
+    "preview:alternative": "node scripts/build.mjs --alternative && node scripts/serve.mjs .preview"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Diego Guevara",
+  "eyebrow": "Business + information systems · NJIT",
+  "headline": "Useful technology starts with understanding people.",
+  "intro": "I’m Diego, a Business and Information Systems student at NJIT. I’m interested in how software, data, and business needs come together to make everyday work better.",
+  "availability": "Exploring internships and opportunities to learn, contribute, and solve practical problems.",
+  "about": "I’m drawn to the space between a problem and the people experiencing it. I want to understand how work gets done, ask better questions, and build solutions that are clear and useful.",
+  "interests": [
+    "Software & practical problem-solving",
+    "Data & business operations",
+    "AI implementation & solutions",
+    "Financial technology"
+  ],
+  "github": "https://github.com/dlg309",
+  "portfolioRepo": "https://github.com/dlg309/Diego-Guevara-Portfolio",
+  "linkedin": "https://www.linkedin.com/in/diegoguevara2093",
+  "email": "diego.guevara107@gmail.com",
+  "resume": "./assets/Diego_Guevara_Resume.pdf",
+  "experience": [
+    {
+      "title": "Department Assistant",
+      "organization": "NJIT · University Advancement & Development",
+      "dates": "Jul 2025–Present",
+      "summary": "I maintain and check database records, investigate discrepancies, and support document, event, and office workflows. I also developed ZipHeatMap to help the department explore donor ZIP-code data."
+    },
+    {
+      "title": "Poll Worker / Election Administrator",
+      "organization": "Essex County Board of Elections",
+      "dates": "Nov 2023–May 2024",
+      "summary": "I prepared voting equipment, verified voter records, trained staff on procedures, and escalated operational issues through established channels."
+    }
+  ],
+  "skills": [
+    {
+      "label": "Programming",
+      "text": "Python, HTML, CSS, and JavaScript through coursework and project work."
+    },
+    {
+      "label": "Working practices",
+      "text": "Git, GitHub, specifications, automated tests, and reviewing changes."
+    },
+    {
+      "label": "Exploring",
+      "text": "How software, data, and AI tools can support useful business workflows."
+    }
+  ]
+}
