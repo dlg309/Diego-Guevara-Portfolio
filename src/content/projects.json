@@ -19,7 +19,13 @@
       },
       {
         "title": "My contribution",
-        "text": "I contributed E-Board member information and headshots, including image updates and profile changes. I also worked on error fixes. The GitHub repository belongs to my project partner, AnabhayanA."
+        "text": "I contributed E-Board member information and headshots, including image updates and profile changes. I also worked on error fixes. The GitHub repository belongs to my project partner, AnabhayanA.",
+        "links": [
+          {
+            "label": "See my E-Board update",
+            "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/768aa0d"
+          }
+        ]
       },
       {
         "title": "What the team built",
@@ -39,7 +45,47 @@
         "label": "See my E-Board update",
         "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/768aa0d"
       }
-    ]
+    ],
+    "cardContribution": "I added E-Board member information and headshots and worked on error fixes.",
+    "image": {
+      "src": "./assets/visuals/alpfa-dashboard.jpg",
+      "alt": "ALPFA NJIT app dashboard with a chapter event and links to events, the E-Board, and other app sections.",
+      "caption": "ALPFA NJIT app dashboard. Event details reflect the time of capture.",
+      "fullSize": true,
+      "linkLabel": "View full-size dashboard screenshot"
+    },
+    "gallery": [
+      {
+        "src": "./assets/visuals/alpfa-events.jpg",
+        "alt": "ALPFA NJIT app events screen displaying chapter events and notification controls.",
+        "caption": "Events screen. The listed events reflect the time of capture.",
+        "fullSize": true,
+        "linkLabel": "View full-size events screenshot"
+      },
+      {
+        "src": "./assets/visuals/alpfa-about.jpg",
+        "alt": "ALPFA NJIT app About screen describing the chapter, its mission, and ways to get involved.",
+        "caption": "About screen.",
+        "fullSize": true,
+        "linkLabel": "View full-size About screenshot"
+      },
+      {
+        "src": "./assets/visuals/alpfa-loading.jpg",
+        "alt": "ALPFA NJIT app loading screen displaying the ALPFA and NJIT marks.",
+        "caption": "Loading screen.",
+        "fullSize": true,
+        "linkLabel": "View full-size loading screenshot"
+      },
+      {
+        "src": "./assets/visuals/alpfa-credit.jpg",
+        "alt": "ALPFA NJIT app credits section listing Diego Guevara as IT Committee app development support.",
+        "caption": "App credits showing Diego’s development support.",
+        "fullSize": true,
+        "linkLabel": "View full-size app credits screenshot"
+      }
+    ],
+    "galleryPreviewCaption": "ALPFA NJIT app dashboard and events screens. Event details reflect the time of capture.",
+    "galleryLayout": "phone"
   },
   {
     "id": "zipheatmap",
@@ -76,7 +122,13 @@
         "text": "The portfolio describes the workflow without publishing donor records, input spreadsheets, or maps based on donor data."
       }
     ],
-    "links": []
+    "links": [],
+    "cardContribution": "I developed a MATLAB tool to validate and map ZIP-code data for my department.",
+    "image": {
+      "src": "./assets/visuals/zipheatmap.svg",
+      "alt": "Illustrated ZipHeatMap workflow from ZIP-code data to checks and a frequency map.",
+      "caption": "Illustrative workflow, not an application screenshot."
+    }
   },
   {
     "id": "tempo",
@@ -106,11 +158,17 @@
       },
       {
         "title": "What was checked",
-        "text": "The rebuild’s notes report unit, database, and desktop/mobile browser checks, including tests using simulated services. Live checks documented successful calendar flows as well as a later Gemini provider outage; they do not establish a clean full live desktop pass."
+        "text": "The rebuild’s notes report unit, database, and desktop/mobile browser checks, including tests using simulated services. Live checks documented successful calendar flows as well as a later Gemini provider outage; they do not establish a clean full live desktop pass. For this portfolio, a mocked manual-planning flow was run locally to capture the interface with fictional data."
       },
       {
         "title": "Version & limitations",
-        "text": "The local Next.js rebuild is ahead of its published branch and has not been deployed to production. The default repository link opens the earlier React/Vite and FastAPI version; the linked rebuild branch may not include the latest local changes."
+        "text": "The local Next.js rebuild is ahead of its published branch and has not been deployed to production. The default repository link opens the earlier React/Vite and FastAPI version; the linked rebuild branch may not include the latest local changes.",
+        "links": [
+          {
+            "label": "View published rebuild branch",
+            "url": "https://github.com/dlg309/Tempo-AI-Assistant/tree/revamp/tempo-next"
+          }
+        ]
       }
     ],
     "links": [
@@ -122,11 +180,91 @@
         "label": "View published rebuild branch",
         "url": "https://github.com/dlg309/Tempo-AI-Assistant/tree/revamp/tempo-next"
       }
+    ],
+    "cardContribution": "I configured database connectivity, checked FastAPI operations, and worked with a coding agent on the rebuild.",
+    "image": {
+      "src": "./assets/visuals/tempo-today.png",
+      "alt": "Tempo Today dashboard with fictional tasks, a sample calendar, and an assistant panel.",
+      "caption": "The local Tempo dashboard with fictional sample data and a mocked backend.",
+      "fullSize": true
+    },
+    "gallery": [
+      {
+        "src": "./assets/visuals/tempo-tasks.png",
+        "alt": "Tempo task list with fictional school and work tasks.",
+        "caption": "The task list with fictional sample tasks.",
+        "fullSize": true
+      },
+      {
+        "src": "./assets/visuals/tempo-proposal.png",
+        "alt": "Tempo task list with a proposed schedule ready for review in the assistant panel.",
+        "caption": "A proposed plan generated in a mocked local planning flow.",
+        "fullSize": true
+      },
+      {
+        "src": "./assets/visuals/tempo-calendar.png",
+        "alt": "Tempo weekly calendar with fictional school and work commitments.",
+        "caption": "The calendar view with fictional commitments.",
+        "fullSize": true
+      }
     ]
   },
   {
-    "id": "rps",
+    "id": "echo-mountain",
     "number": "04",
+    "kind": "Browser game · Prototype",
+    "status": "Local prototype",
+    "title": "Echo Mountain",
+    "summary": "A top-down snowboarding game with changing courses, obstacles, and local run records.",
+    "tags": [
+      "JavaScript",
+      "HTML & CSS",
+      "Game design"
+    ],
+    "overview": "A browser-based snowboarding prototype where players choose a trail, steer around obstacles, and build a score on the way down.",
+    "cardContribution": "Choose a difficulty, time of day, and optional expert fog.",
+    "sections": [
+      {
+        "title": "The idea",
+        "text": "Create a downhill game that makes each run feel different through difficulty, time-of-day settings, and changing obstacles."
+      },
+      {
+        "title": "What it includes",
+        "text": "Players steer with a keyboard or touch controls, choose a difficulty and time of day, use ramps, and try to avoid obstacles. Expert mode includes optional fog."
+      },
+      {
+        "title": "Scoring & records",
+        "text": "Time, close calls, and ramps contribute to the score and multiplier. Previous and longest-run markers are stored in the current browser."
+      },
+      {
+        "title": "What was checked",
+        "text": "The local prototype was run in a browser for these screenshots. Its 19 automated tests passed, covering rules, generated courses, jumps, fog, and records."
+      },
+      {
+        "title": "Limitations",
+        "text": "This is a local prototype; the available copy does not establish a public deployment or document individual contribution history. Browser-local records can be lost when browser data is cleared."
+      }
+    ],
+    "links": [],
+    "image": {
+      "src": "./assets/visuals/echo-mountain-gameplay.png",
+      "alt": "Echo Mountain beginner run with a snowboarder on the slope and a score, speed, time, and distance display.",
+      "caption": "A local gameplay capture showing a beginner run.",
+      "fullSize": true
+    },
+    "gallery": [
+      {
+        "src": "./assets/visuals/echo-mountain-expert.png",
+        "alt": "Echo Mountain expert trail setup with sunset and expert fog selected.",
+        "caption": "Expert course settings in the local prototype.",
+        "fullSize": true
+      }
+    ],
+    "cardContributionLabel": "Project overview:"
+  },
+  {
+    "id": "rps",
+    "number": "05",
     "kind": "Individual · IS218 coursework",
     "status": "Completed coursework",
     "title": "Rock, Paper, Scissors",
@@ -152,7 +290,13 @@
       },
       {
         "title": "What was checked",
-        "text": "The project record reports checks for all nine outcomes, invalid input, request behavior, and browser replay. Its final local run recorded 38 non-browser and 10 Chromium tests passing, alongside formatting and lint checks."
+        "text": "The project record reports checks for all nine outcomes, invalid input, request behavior, and browser replay. Its final local run recorded 38 non-browser and 10 Chromium tests passing, alongside formatting and lint checks.",
+        "links": [
+          {
+            "label": "Read the project record",
+            "url": "https://github.com/dlg309/RPS_Game218/blob/main/SPEC.md"
+          }
+        ]
       },
       {
         "title": "Limitation & next step",
@@ -171,6 +315,21 @@
       {
         "label": "See the pull request",
         "url": "https://github.com/dlg309/RPS_Game218/pull/2"
+      }
+    ],
+    "cardContribution": "I agreed on the rules and checks, requested extensions, and reviewed gameplay with coding-agent assistance.",
+    "image": {
+      "src": "./assets/visuals/rps-gameplay.png",
+      "alt": "Rock, Paper, Scissors after a tied round, showing three recent games and a winning streak.",
+      "caption": "A local game session showing a completed round, recent games, and streaks.",
+      "fullSize": true
+    },
+    "gallery": [
+      {
+        "src": "./assets/visuals/rps-ready.png",
+        "alt": "Rock, Paper, Scissors game screen before the first round, with move choices and an empty game history.",
+        "caption": "The game before the first round in a new local session.",
+        "fullSize": true
       }
     ]
   }

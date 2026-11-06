@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" role="img" aria-labelledby="title desc">
+  <title id="title">ZipHeatMap workflow</title>
+  <desc id="desc">An illustrated workflow from ZIP codes to data checks and filters, then a frequency map.</desc>
+  <rect width="720" height="440" rx="8" fill="#eee8dd"/>
+  <circle cx="656" cy="68" r="11" fill="#b4543c"/>
+  <text x="45" y="51" fill="#536268" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="1.5">ILLUSTRATED WORKFLOW</text>
+  <text x="45" y="111" fill="#1f2b30" font-family="Georgia, serif" font-size="42">From ZIP codes to a map</text>
+  <path d="M199 246h89m144 0h89" fill="none" stroke="#a6917c" stroke-width="3" stroke-linecap="round"/>
+  <path d="m279 237 9 9-9 9m233-18 9 9-9 9" fill="none" stroke="#a6917c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#f8f7f4" stroke="#c7b9a8" stroke-width="2"><circle cx="135" cy="246" r="58"/><circle cx="360" cy="246" r="58"/><circle cx="585" cy="246" r="58"/></g>
+  <g fill="none" stroke="#25383b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="109" y="217" width="52" height="59" rx="4"/><path d="M120 232h30M120 245h30M120 258h18"/>
+    <path d="M330 225h60l-22 25v18l-16 8v-26z"/><path d="m373 257 6 6 12-13"/>
+    <path d="m554 226 20-7 21 7 20-7v50l-20 7-21-7-20 7zM574 219v50M595 226v50"/>
+    <circle cx="584" cy="242" r="5" fill="#b4543c" stroke="none"/><circle cx="603" cy="257" r="4" fill="#b4543c" stroke="none"/>
+  </g>
+  <g fill="#1f2b30" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700" text-anchor="middle">
+    <text x="135" y="356">ZIP codes</text><text x="360" y="350">Check &amp;</text><text x="360" y="386">filter</text><text x="585" y="350">Frequency</text><text x="585" y="386">map</text>
+  </g>
+</svg>

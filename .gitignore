@@ -5,9 +5,19 @@ private/*
 !private/README.md
 .DS_Store
 
+# Environment files may contain credentials; keep the sample shareable.
+.env
+.env.*
+!.env.example
+
 # Local ZipHeatMap package and spreadsheets; keep out of commits.
 docs/output/
 
 # Temporary project copies contain local settings and personal data.
 docs/Tempo-AI-Assistant/
 docs/alpfa-njit-app/
+
+# Temporary project copies used for local portfolio research.
+docs/Tempo/
+docs/RPS_218Game/
+docs/echo-mountain/
