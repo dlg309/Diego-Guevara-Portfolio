@@ -8,9 +8,9 @@ Promise: make Diego’s work, contribution, checks, and next steps easy to under
 
 ## Design choice
 
-- **A — evidence-first professional (selected):** restrained charcoal, slate, and warm neutral palette, high-contrast type, scannable project cards, and case notes close to evidence. Tradeoff: less expressive than a personal notebook, but faster to scan and simpler to maintain.
+- **A — editorial evidence-first (selected):** charcoal, warm paper, restrained terracotta, clear type hierarchy, scannable project cards, and detailed case notes. The opening brings the student introduction, opportunity goal, and résumé action into view sooner. Tradeoff: showing contribution excerpts adds some page length, but makes individual work easier to assess.
 - **B — builder’s notebook:** soft neutral background, a stacked hero and stronger card rule, using the same content and components. Tradeoff: more editorial personality, but the longer opening pushes project evidence farther down. Run `npm run preview:alternative` for the isolated local comparison; it is not included in `dist/`.
-- Reference: [GOV.UK Design System headings](https://design-system.service.gov.uk/styles/headings/). Adapted the principle of consistent, hierarchical headings and captions, not its branding. No real user preference is claimed.
+- References: [Figma’s UI design guide](https://www.figma.com/resource-library/what-is-ui-design/) for hierarchy and consistent interaction patterns, [GOV.UK headings](https://design-system.service.gov.uk/styles/headings/) for consistent structure, and the publicly accessible [Mobbin landing page](https://mobbin.com/) for browsing-oriented visual hierarchy. The gated Mobbin pattern library was not inspected; no branding or product screenshots were copied. No real user preference is claimed.
 
 ## Stories and acceptance checks
 
@@ -31,9 +31,10 @@ Promise: make Diego’s work, contribution, checks, and next steps easy to under
 
 ## Changed / checked / next
 
-- **Changed:** built a static, responsive portfolio with editable content and a local alternative presentation. Added ZipHeatMap and reordered the work and case studies: ALPFA NJIT App, ZipHeatMap, Tempo, then Rock, Paper, Scissors.
-- **Checked:** `npm install` and `npm run build` passed. Local Chromium checks at 375, 768, and 1440 px found no horizontal page overflow or missing internal anchors; keyboard focus and the skip link worked. Axe reported no violations at 375 and 1440 px after contrast and accessible-name fixes. The six published GitHub URLs returned HTTP 200. These checks are not a full screen-reader or human usability review. Project check results on the website are historical results from the RPS project record, not newly rerun here.
-- **Next:** verify professional details, confirm any further individual contributions and whether the required group project is represented, preserve relevant project evidence, and carry out real peer review.
+- **Changed:** revised the introduction and hero focus panel; shortened card contributions; added clearly labeled project visuals to cards and case studies; placed selected evidence links near their claims; and reduced the course note. ALPFA now uses Diego-provided screenshots of the dashboard, events, About, loading screen, and app credit. The case study labels event details as a snapshot and includes full-size links; three additional screenshots can be expanded. ZipHeatMap and Tempo use original illustrative diagrams. RPS uses a real screenshot of a completed local round with synthetic moves; a temporary emoji font supplied missing glyphs during capture. The order and detailed contribution and limitation text remain intact.
+- **Checked:** on November 5, 2026, `npm ci --ignore-scripts` and `npm run build` passed. Playwright Chromium at 320, 375, 768 and 1440 px and Playwright Firefox at 375 and 1440 px showed no page overflow, broken internal anchors, or missing project images; reduced motion and the skip link were checked. All 32 links received visible keyboard focus in a Chromium pass. Axe scans reported no violations at 375 and 1440 px in Chromium. Mobile touch emulation followed all four case links; the résumé and full-size RPS image returned HTTP 200. GitHub destinations returned HTTP 200; LinkedIn returned HTTP 999, so its profile could not be independently verified. WebKit, real Safari, Chrome and Edge, a manual screen reader, and actual user sessions were not tested. Historical project check results were not rerun for this portfolio.
+- **Screenshot update checked:** the build passed; all five ALPFA JPEGs loaded with alternative text in Playwright Chromium and Firefox. The gallery opened and closed with a keyboard, no horizontal overflow appeared at 320–1440 px, and Chromium axe scans at 320, 375, and 1440 px reported no violations. No manual screen-reader or real-user testing was conducted.
+- **Next:** supply safe synthetic-data screenshots for ZipHeatMap and Tempo if desired; verify professional details and group-project status; and carry out real peer review using the pending [research plan](USER_RESEARCH.md).
 
 ## Peer review and retest
 
