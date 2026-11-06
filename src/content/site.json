@@ -1,8 +1,8 @@
 {
   "name": "Diego Guevara",
   "eyebrow": "Business + information systems · NJIT",
-  "headline": "Useful technology starts with understanding people.",
-  "intro": "I’m Diego, a Business and Information Systems student at NJIT. I’m interested in how software, data, and business needs come together to make everyday work better.",
+  "headline": "Useful technology,",
+  "intro": "I’m Diego, an NJIT Business and Information Systems student building software and exploring ways to improve business workflows.",
   "availability": "Exploring internships and opportunities to learn, contribute, and solve practical problems.",
   "about": "I’m drawn to the space between a problem and the people experiencing it. I want to understand how work gets done, ask better questions, and build solutions that are clear and useful.",
   "interests": [
@@ -43,5 +43,6 @@
       "label": "Exploring",
       "text": "How software, data, and AI tools can support useful business workflows."
     }
-  ]
+  ],
+  "headlineEmphasis": "made for people."
 }
