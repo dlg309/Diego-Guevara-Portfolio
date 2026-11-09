@@ -33,6 +33,11 @@ test('development server does not serve private project folders', async () => {
     '/%64ocs/not-public.html',
     '/docs%2fnot-public.html',
     '/%2564ocs/not-public.html',
+    '/%2e%2e/private/README.md',
+    '/%252e%252e%252fprivate/README.md',
+    '/.env',
+    '/.env.local',
+    '/%2eenv.production',
     '/private/README.md',
     `/@fs${resolve('docs/not-public.html')}`,
   ];

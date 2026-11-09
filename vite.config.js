@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 
-const productionPolicy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'";
+const productionPolicy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'";
 
 export default defineConfig({
   // Keep built assets working when the site is hosted in a subdirectory.
@@ -12,22 +12,26 @@ export default defineConfig({
         // Vite's watch exclusions do not stop files being served. Keep local
         // reference projects and private notes out of the development server.
         server.middlewares.use((request, response, next) => {
-          let pathname;
+          let pathname = (request.url || '').split('?')[0];
           try {
-            // Keep leading slashes as path characters (URL treats // as a host),
-            // and catch encoded separators before Vite's static middleware.
-            pathname = (request.url || '').split('?')[0];
-            for (let i = 0; i < 2; i += 1) {
+            // Decode nested escapes before checking paths so encoded separators
+            // and traversal segments cannot reach Vite's static middleware.
+            for (let depth = 0; depth < 8; depth += 1) {
               const decoded = decodeURIComponent(pathname);
               if (decoded === pathname) break;
               pathname = decoded;
+              if (depth === 7) {
+                response.writeHead(400).end();
+                return;
+              }
             }
             pathname = pathname.replaceAll('\\', '/');
           } catch {
             response.writeHead(400).end();
             return;
           }
-          if (/(?:^|\/)(?:docs|private|\.git)(?:\/|$)/i.test(pathname)) {
+          const segments = pathname.split('/');
+          if (segments.includes('..') || /(?:^|\/)(?:docs|private|\.git)(?:\/|$)|(?:^|\/)\.env(?:[^/]*)(?:\/|$)/i.test(pathname)) {
             response.writeHead(404).end();
             return;
           }

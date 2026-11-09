@@ -18,5 +18,16 @@ test('static host configurations carry matching security headers', () => {
     assert.equal(vercelHeaders.get(name), staticHeaders.get(name), `${name} differs between host configurations`);
   }
   assert.match(staticHeaders.get('content-security-policy'), /frame-ancestors 'none'/);
+  for (const directive of [
+    "default-src 'self'",
+    "script-src 'self'",
+    "style-src 'self'",
+    "img-src 'self' data:",
+    "font-src 'self'",
+    "connect-src 'self'",
+    "object-src 'none'",
+  ]) {
+    assert.ok(staticHeaders.get('content-security-policy').includes(directive), `${directive} missing from CSP`);
+  }
   assert.equal(staticHeaders.get('x-frame-options'), 'DENY');
 });

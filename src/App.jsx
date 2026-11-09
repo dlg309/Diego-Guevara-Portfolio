@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useEffect } from 'react';
+import * as Accordion from '@radix-ui/react-accordion';
+import { motion, useReducedMotion } from 'motion/react';
 import site from './content/site.json';
 import projects from './content/projects.json';
 
@@ -76,21 +77,21 @@ function ProjectCard({ project, eager = false }) {
 }
 
 function CaseStudy({ project }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
   const sectionUrls = new Set(project.sections.flatMap(section => (section.links || []).map(link => link.url)));
   const remainingLinks = (project.links || []).filter(link => !sectionUrls.has(link.url));
   return (
-    <article className="case-study" id={project.id}>
-      <button className="case-trigger" type="button" aria-expanded={isOpen} aria-controls={`case-${project.id}-content`} onClick={() => setIsOpen(open => !open)}>
-        <span className="case-number" aria-hidden="true">{project.number}</span>
-        <span className="case-summary-title"><span className="case-kind">{project.kind}</span><span className="case-title">{project.title}</span></span>
-        <span className="status">{project.status}</span>
-        <span className="case-toggle" aria-hidden="true">{isOpen ? '−' : '+'}</span>
-      </button>
-      <div className="case-panel" id={`case-${project.id}-content`} aria-hidden={!isOpen} inert={!isOpen}>
-        <AnimatePresence initial={false}>
-        {isOpen && <motion.div className="case-body" initial={shouldReduceMotion ? false : { opacity: 0, height: 0, y: 8 }} animate={{ opacity: 1, height: 'auto', y: 0 }} exit={{ opacity: 0, height: 0, y: shouldReduceMotion ? 0 : 8 }} transition={shouldReduceMotion ? { duration: 0 } : springTransition}>
+    <Accordion.Item asChild className="case-study" value={project.id}>
+      <article id={project.id}>
+        <Accordion.Header className="case-heading">
+          <Accordion.Trigger className="case-trigger">
+            <span className="case-number" aria-hidden="true">{project.number}</span>
+            <span className="case-summary-title"><span className="case-kind">{project.kind}</span><span className="case-title">{project.title}</span></span>
+            <span className="status">{project.status}</span>
+            <span className="case-toggle" aria-hidden="true" />
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content className="case-panel">
+          <div className="case-body">
         <div className="case-intro"><h3>{project.title}</h3><p>{project.overview}</p></div>
         <div className="case-content">
           <ProjectMedia project={project} detail />
@@ -98,10 +99,10 @@ function CaseStudy({ project }) {
         </div>
         {remainingLinks.length > 0 && <div className="case-links">{remainingLinks.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</div>}
         <a className="back-link" href="#work">↑ Back to selected work</a>
-        </motion.div>}
-        </AnimatePresence>
-      </div>
-    </article>
+          </div>
+        </Accordion.Content>
+      </article>
+    </Accordion.Item>
   );
 }
 
@@ -165,7 +166,7 @@ export default function App() {
           </motion.div>
           <div className="project-notes" id="case-studies" aria-labelledby="notes-title">
             <SectionHeading label="PROJECT NOTES" title="The work, in context." id="notes-title" description="Open a case study for the problem, contribution, decisions, checks, and limitations." />
-            <div className="case-list">{orderedProjects.map(project => <CaseStudy key={project.id} project={project} />)}</div>
+            <Accordion.Root className="case-list" type="multiple">{orderedProjects.map(project => <CaseStudy key={project.id} project={project} />)}</Accordion.Root>
             <aside className="group-note"><p><strong>Course note.</strong> The required group customer project and my specific contribution are still being confirmed. I’ll add the team context and evidence when they’re ready.</p></aside>
           </div>
         </section>
@@ -173,7 +174,7 @@ export default function App() {
         <section className="section wrap" id="experience" aria-labelledby="experience-title"><SectionHeading number="03" label="TECHNICAL LEADERSHIP / EXPERIENCE" title="Where I’ve put the work to use." id="experience-title" /><div className="experience">{site.experience.map(item => <article className="experience-entry" key={`${item.organization}-${item.title}`}><span className="experience-dates">{item.dates}</span><h3>{item.title}</h3><p className="experience-meta">{item.organization}</p><p>{item.summary}</p></article>)}</div></section>
         <section className="contact wrap" id="contact" aria-labelledby="contact-title"><div><p className="eyebrow">04 / CONTACT</p><h2 id="contact-title">Let’s make<br />something useful.</h2></div><div className="contact-copy"><p>Have an opportunity or a project in mind? I’d welcome a conversation.</p><a className="button button--primary" href={`mailto:${site.email}`}>Email Diego<Arrow /></a><a className="email-link" href={`mailto:${site.email}`}>{site.email}</a><div className="contact-links"><TextLink href={site.linkedin}>LinkedIn</TextLink><TextLink href={site.github}>GitHub</TextLink><TextLink href={site.resume}>View résumé</TextLink></div></div></section>
       </main>
-      <footer className="wrap"><span>© {site.name}</span><a href="#top">Back to top ↑</a><TextLink href={site.portfolioRepo}>Portfolio source</TextLink></footer>
+      <footer className="wrap"><span>© {new Date().getFullYear()} {site.name}</span><a href="#top">Back to top ↑</a><TextLink href={site.portfolioRepo}>Portfolio source</TextLink></footer>
     </>
   );
 }
