@@ -44,6 +44,25 @@
       "text": "How software, data, and AI tools can support useful business workflows."
     }
   ],
+  "activeStack": [
+    "React Native",
+    "Expo",
+    "TypeScript",
+    "MATLAB",
+    "Next.js",
+    "PostgreSQL",
+    "Python",
+    "Flask",
+    "JavaScript",
+    "Automated testing"
+  ],
+  "projectOrder": [
+    "alpfa",
+    "zipheatmap",
+    "tempo",
+    "echo-mountain",
+    "rps"
+  ],
   "headlineEmphasis": "Practical software.",
   "professionalFocus": "I’m exploring forward-deployed AI, UI/UX, and technical product roles.",
   "featuredProject": "alpfa"

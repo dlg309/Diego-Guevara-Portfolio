@@ -47,7 +47,10 @@ function checkImage(image, description) {
 for (const key of ['github', 'portfolioRepo', 'linkedin']) checkExternalUrl(site[key], `site.${key}`);
 check(typeof site.email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.email), 'site.email must be a valid email address');
 checkAsset(site.resume, 'site.resume');
+check(Array.isArray(site.activeStack) && site.activeStack.length > 0, 'site.activeStack must be a nonempty array');
 check(Array.isArray(projects) && projects.length > 0, 'projects must be a nonempty array');
+const projectIds = projects.map((project) => project.id);
+check(Array.isArray(site.projectOrder) && site.projectOrder.length === projectIds.length && new Set(site.projectOrder).size === projectIds.length && projectIds.every((id) => site.projectOrder.includes(id)), 'site.projectOrder must list every project exactly once');
 const ids = new Set();
 for (const project of projects) {
   const name = project.title || 'Untitled project';
@@ -55,7 +58,8 @@ for (const project of projects) {
   check(!ids.has(project.id), `${name} has a duplicate project ID`);
   ids.add(project.id);
   check(typeof project.role === 'string' && project.role.trim().length > 0, `${name} needs a documented role or an explicit role limitation`);
-  check(typeof project.deliverable === 'string' && project.deliverable.trim().length > 0, `${name} needs a key deliverable`);
+  check(typeof project.scope === 'string' && project.scope.trim().length > 0, `${name} needs a scope or timeline note`);
+  check(typeof project.verifiedContribution === 'string' && project.verifiedContribution.trim().length > 0, `${name} needs a verified contribution or evidence limitation`);
   if (project.image) checkImage(project.image, name);
   for (const image of project.gallery || []) checkImage(image, `${name} gallery`);
   for (const link of [...(project.links || []), ...(project.sections || []).flatMap((section) => section.links || [])]) {

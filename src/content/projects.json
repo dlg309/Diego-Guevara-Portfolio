@@ -7,7 +7,8 @@
     "title": "ALPFA NJIT App",
     "summary": "A chapter mobile app for finding events, meeting the E-Board, and sharing photos.",
     "role": "E-Board content updates and app support",
-    "deliverable": "Added member information and headshots, and contributed error fixes.",
+    "scope": "Collaborative chapter app · Timeline not documented",
+    "verifiedContribution": "Added member information and headshots, updated profiles, and contributed error fixes.",
     "tags": [
       "React Native",
       "Expo",
@@ -109,7 +110,8 @@
     "title": "ZipHeatMap",
     "summary": "A ZIP-code mapping tool I developed to help my department understand where donors come from.",
     "role": "Application developer",
-    "deliverable": "Built a MATLAB workflow for ZIP validation, state summaries, filtering, and mapping.",
+    "scope": "Individual departmental tool · Timeline not documented",
+    "verifiedContribution": "Built a MATLAB workflow for ZIP validation, state summaries, filtering, and mapping.",
     "tags": [
       "MATLAB",
       "Data validation",
@@ -157,7 +159,8 @@
     "title": "Tempo",
     "summary": "A collaborative planner that turns tasks, available time, and commitments into a reviewable schedule.",
     "role": "Database setup, API checks, and rebuild review",
-    "deliverable": "Configured PostgreSQL connectivity, checked FastAPI operations, and reviewed planning work in the rebuild.",
+    "scope": "Collaborative hackathon origin · Local rebuild ongoing",
+    "verifiedContribution": "Configured PostgreSQL connectivity, checked FastAPI operations, and reviewed planning work in the rebuild.",
     "tags": [
       "Next.js",
       "PostgreSQL",
@@ -248,7 +251,8 @@
     "title": "Echo Mountain",
     "summary": "A top-down snowboarding game with changing courses, obstacles, and local run records.",
     "role": "Individual contribution not documented",
-    "deliverable": "Playable browser prototype with configurable trails, obstacles, and local run records.",
+    "scope": "Local browser-game prototype · Timeline not documented",
+    "verifiedContribution": "Project records document a playable prototype and 19 automated tests; individual authorship is not established.",
     "tags": [
       "JavaScript",
       "HTML & CSS",
@@ -307,7 +311,8 @@
     "title": "Rock, Paper, Scissors",
     "summary": "A small game with a bigger question: how do you know a result is right?",
     "role": "Project direction and review (AI-assisted implementation)",
-    "deliverable": "Defined checks, requested history and streak features, and reviewed gameplay and keyboard replay.",
+    "scope": "Individual IS218 coursework · Timeline not documented",
+    "verifiedContribution": "Defined checks, requested history and streak features, and reviewed gameplay and keyboard replay.",
     "tags": [
       "Python",
       "Flask",

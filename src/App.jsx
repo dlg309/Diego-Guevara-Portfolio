@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import site from './content/site.json';
 import projects from './content/projects.json';
 
@@ -15,7 +16,7 @@ function TextLink({ href, children, className = 'text-link' }) {
 }
 
 function ProjectImage({ image, eager = false, className = '' }) {
-  return <img className={className} src={assetHref(image.src)} alt={image.alt} width={image.width} height={image.height} loading={eager ? 'eager' : 'lazy'} decoding="async" />;
+  return <img className={className} src={assetHref(image.src)} alt={image.alt} width={image.width} height={image.height} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" />;
 }
 
 function ImageFigure({ image, className = '' }) {
@@ -27,7 +28,7 @@ function ImageFigure({ image, className = '' }) {
   );
 }
 
-function ProjectMedia({ project, detail = false }) {
+function ProjectMedia({ project, detail = false, eager = false }) {
   const { image, gallery = [] } = project;
   if (!image) return null;
   if (!detail && project.cardMediaNote) {
@@ -38,7 +39,7 @@ function ProjectMedia({ project, detail = false }) {
     return (
       <figure className={`project-media ${phones ? 'project-media--phones' : ''}`}>
         <div className={`media-viewport ${project.previewFit === 'top' ? 'media-viewport--top' : ''}`}>
-          {phones ? <div className="phone-pair">{[image, gallery[0]].filter(Boolean).map(item => <ProjectImage key={item.src} image={item} />)}</div> : <ProjectImage image={image} />}
+          {phones ? <div className="phone-pair">{[image, gallery[0]].filter(Boolean).map((item, index) => <ProjectImage key={item.src} image={item} eager={eager && index === 0} />)}</div> : <ProjectImage image={image} eager={eager} />}
         </div>
         <figcaption>{project.cardCaption || image.caption}</figcaption>
       </figure>
@@ -55,7 +56,7 @@ function ProjectMedia({ project, detail = false }) {
   );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, eager = false }) {
   const sourceLink = project.links?.[0];
   return (
     <article className="project-card" aria-labelledby={`card-${project.id}`}>
@@ -63,9 +64,9 @@ function ProjectCard({ project }) {
         <div className="project-meta"><span>{project.number} / {project.kind}</span><span className="status">{project.status}</span></div>
         <h3 id={`card-${project.id}`}>{project.title}</h3>
         <p>{project.summary}</p>
-        <dl className="project-proof"><div><dt>Role</dt><dd>{project.role}</dd></div><div><dt>Key deliverable</dt><dd>{project.deliverable}</dd></div></dl>
+        <dl className="project-proof"><div><dt>Role</dt><dd>{project.role}</dd></div><div><dt>Scope / timeline</dt><dd>{project.scope}</dd></div><div><dt>Verified contribution</dt><dd>{project.verifiedContribution}</dd></div></dl>
       </div>
-      <ProjectMedia project={project} />
+      <ProjectMedia project={project} eager={eager} />
       <div className="project-card__footer">
         <div className="project-actions"><a className="text-link" href={`#${project.id}`}>Read case study<span className="sr-only"> for {project.title}</span><Arrow /></a>{sourceLink && <TextLink href={sourceLink.url}>{sourceLink.label}</TextLink>}</div>
         <ul className="tags" aria-label={`Technologies and topics for ${project.title}`}>{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
@@ -75,17 +76,21 @@ function ProjectCard({ project }) {
 }
 
 function CaseStudy({ project }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   const sectionUrls = new Set(project.sections.flatMap(section => (section.links || []).map(link => link.url)));
   const remainingLinks = (project.links || []).filter(link => !sectionUrls.has(link.url));
   return (
-    <details className="case-study" id={project.id}>
-      <summary aria-controls={`case-${project.id}-content`}>
+    <article className="case-study" id={project.id}>
+      <button className="case-trigger" type="button" aria-expanded={isOpen} aria-controls={`case-${project.id}-content`} onClick={() => setIsOpen(open => !open)}>
         <span className="case-number" aria-hidden="true">{project.number}</span>
         <span className="case-summary-title"><span className="case-kind">{project.kind}</span><span className="case-title">{project.title}</span></span>
         <span className="status">{project.status}</span>
-        <span className="case-toggle" aria-hidden="true">＋</span>
-      </summary>
-      <div className="case-body" id={`case-${project.id}-content`}>
+        <span className="case-toggle" aria-hidden="true">{isOpen ? '−' : '+'}</span>
+      </button>
+      <div className="case-panel" id={`case-${project.id}-content`} aria-hidden={!isOpen} inert={!isOpen}>
+        <AnimatePresence initial={false}>
+        {isOpen && <motion.div className="case-body" initial={shouldReduceMotion ? false : { opacity: 0, height: 0, y: 8 }} animate={{ opacity: 1, height: 'auto', y: 0 }} exit={{ opacity: 0, height: 0, y: shouldReduceMotion ? 0 : 8 }} transition={shouldReduceMotion ? { duration: 0 } : springTransition}>
         <div className="case-intro"><h3>{project.title}</h3><p>{project.overview}</p></div>
         <div className="case-content">
           <ProjectMedia project={project} detail />
@@ -93,14 +98,23 @@ function CaseStudy({ project }) {
         </div>
         {remainingLinks.length > 0 && <div className="case-links">{remainingLinks.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</div>}
         <a className="back-link" href="#work">↑ Back to selected work</a>
+        </motion.div>}
+        </AnimatePresence>
       </div>
-    </details>
+    </article>
   );
 }
 
 function SectionHeading({ number, label, title, description, id }) {
-  return <div className="section-heading"><div><p className="eyebrow">{number} / {label}</p><h2 id={id}>{title}</h2></div>{description && <p>{description}</p>}</div>;
+  return <div className="section-heading"><div><p className="eyebrow">{number && `${number} / `}{label}</p><h2 id={id}>{title}</h2></div>{description && <p>{description}</p>}</div>;
 }
+
+const springTransition = { type: 'spring', stiffness: 340, damping: 30 };
+const projectGridVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
+const projectCardVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: springTransition },
+};
 
 function useCaseStudyAnchors() {
   useEffect(() => {
@@ -108,8 +122,9 @@ function useCaseStudyAnchors() {
       let id;
       try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
       const target = document.getElementById(id);
-      if (!target?.matches('details.case-study')) return;
-      target.open = true;
+      if (!target?.matches('.case-study')) return;
+      const trigger = target.querySelector('.case-trigger');
+      if (trigger?.getAttribute('aria-expanded') !== 'true') trigger?.click();
       if (scroll) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
     };
     const onHashChange = () => reveal(window.location.hash, true);
@@ -126,6 +141,11 @@ function useCaseStudyAnchors() {
 
 export default function App() {
   useCaseStudyAnchors();
+  const shouldReduceMotion = useReducedMotion();
+  const projectOrder = site.projectOrder || projects.map(project => project.id);
+  const orderedProjects = [...projects]
+    .sort((left, right) => projectOrder.indexOf(left.id) - projectOrder.indexOf(right.id))
+    .map((project, index) => ({ ...project, number: String(index + 1).padStart(2, '0') }));
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
@@ -135,14 +155,23 @@ export default function App() {
       </div></header>
       <main id="main" tabIndex={-1}>
         <section className="hero wrap" id="top" aria-labelledby="hero-title">
-          <div className="hero-copy"><p className="eyebrow">{site.name} <span aria-hidden="true">/</span> {site.eyebrow}</p><h1 id="hero-title">{site.headline}<span>{site.headlineEmphasis}</span></h1><p className="hero-intro">{site.intro} {site.professionalFocus}</p><div className="hero-actions"><a className="button button--primary" href="#work">Explore technical projects<Arrow down /></a><a className="button button--secondary" href={assetHref(site.resume)}>View résumé<Arrow /></a></div><p className="hero-availability"><span className="dot" aria-hidden="true" />{site.availability}</p></div>
-          <aside className="hero-focus" aria-label="Areas of focus"><p className="eyebrow">Areas of focus</p><ul>{site.interests.map(interest => <li key={interest}>{interest}</li>)}</ul></aside>
+          <div className="hero-copy"><p className="eyebrow">{site.name} <span aria-hidden="true">/</span> {site.eyebrow}</p><h1 id="hero-title">{site.headline}<span>{site.headlineEmphasis}</span></h1><p className="hero-intro">{site.intro} {site.professionalFocus}</p><div className="hero-actions"><a className="button button--primary" href={`mailto:${site.email}`}>Contact me<Arrow /></a><a className="button button--secondary" href={assetHref(site.resume)} download>Download résumé<Arrow /></a><a className="text-link" href="#work">Explore projects<Arrow down /></a></div><div className="hero-links"><TextLink href={site.linkedin}>LinkedIn</TextLink><TextLink href={site.github}>GitHub</TextLink></div><p className="hero-availability"><span className="dot" aria-hidden="true" />{site.availability}</p></div>
+          <aside className="hero-focus" aria-label="Selected project stack"><p className="eyebrow">Stack in selected work</p><ul>{site.activeStack.map(item => <li key={item}>{item}</li>)}</ul></aside>
         </section>
-        <section className="section section--work wrap" id="work" aria-labelledby="work-title"><SectionHeading number="01" label="SELECTED WORK" title="Projects with a purpose." id="work-title" description="Software, data, and operations projects—with my role and the evidence close at hand." /><div className="project-grid">{projects.map(project => <ProjectCard key={project.id} project={project} />)}</div></section>
-        <section className="section wrap" id="case-studies" aria-labelledby="notes-title"><SectionHeading number="02" label="PROJECT NOTES" title="The work, in context." id="notes-title" description="Open a case study for the problem, contribution, decisions, checks, and limitations." /><div className="case-list">{projects.map(project => <CaseStudy key={project.id} project={project} />)}</div><aside className="group-note"><p><strong>Course note.</strong> The required group customer project and my specific contribution are still being confirmed. I’ll add the team context and evidence when they’re ready.</p></aside></section>
-        <section className="section wrap" id="about" aria-labelledby="about-title"><SectionHeading number="03" label="BACKGROUND & APPROACH" title="A business lens. A builder’s curiosity." id="about-title" description="Understand the need, make the work tangible, and check the result." /><div className="background-grid"><div className="about-copy"><p className="lead">{site.about}</p><h3 className="small-heading">What I’m exploring</h3><ul className="interest-list">{site.interests.map(interest => <li key={interest}>{interest}</li>)}</ul></div><div className="approach-content" id="approach"><h3>How I approach the work</h3><div className="principles"><div><span aria-hidden="true">01</span><h4>Understand the need</h4><p>Ask how the work gets done and where people encounter friction.</p></div><div><span aria-hidden="true">02</span><h4>Make it tangible</h4><p>Build something specific enough to try, discuss, and improve.</p></div><div><span aria-hidden="true">03</span><h4>Check the work</h4><p>Use tests, evidence, and honest limitations to guide the next step.</p></div></div><dl className="skills">{site.skills.map(skill => <div key={skill.label}><dt>{skill.label}</dt><dd>{skill.text}</dd></div>)}</dl></div></div></section>
-        <section className="section wrap" id="experience" aria-labelledby="experience-title"><SectionHeading number="04" label="EXPERIENCE" title="Where I’ve put the work to use." id="experience-title" /><div className="experience">{site.experience.map(item => <article className="experience-entry" key={`${item.organization}-${item.title}`}><span className="experience-dates">{item.dates}</span><h3>{item.title}</h3><p className="experience-meta">{item.organization}</p><p>{item.summary}</p></article>)}</div></section>
-        <section className="contact wrap" id="contact" aria-labelledby="contact-title"><div><p className="eyebrow">05 / CONTACT</p><h2 id="contact-title">Let’s make<br />something useful.</h2></div><div className="contact-copy"><p>Have an opportunity or a project in mind? I’d welcome a conversation.</p><a className="button button--primary" href={`mailto:${site.email}`}>Email Diego<Arrow /></a><a className="email-link" href={`mailto:${site.email}`}>{site.email}</a><div className="contact-links"><TextLink href={site.linkedin}>LinkedIn</TextLink><TextLink href={site.github}>GitHub</TextLink><TextLink href={site.resume}>View résumé</TextLink></div></div></section>
+        <section className="section section--work wrap" id="work" aria-labelledby="work-title">
+          <SectionHeading number="01" label="SELECTED WORK" title="Projects with a purpose." id="work-title" description="Software, data, and operations projects—with my role and the evidence close at hand." />
+          <motion.div className="project-grid" variants={projectGridVariants} initial={shouldReduceMotion ? false : 'hidden'} whileInView={shouldReduceMotion ? undefined : 'visible'} viewport={{ once: true, amount: 0.1 }}>
+            {orderedProjects.map((project, index) => <motion.div className="project-card-reveal" key={project.id} variants={projectCardVariants}><ProjectCard project={project} eager={index === 0} /></motion.div>)}
+          </motion.div>
+          <div className="project-notes" id="case-studies" aria-labelledby="notes-title">
+            <SectionHeading label="PROJECT NOTES" title="The work, in context." id="notes-title" description="Open a case study for the problem, contribution, decisions, checks, and limitations." />
+            <div className="case-list">{orderedProjects.map(project => <CaseStudy key={project.id} project={project} />)}</div>
+            <aside className="group-note"><p><strong>Course note.</strong> The required group customer project and my specific contribution are still being confirmed. I’ll add the team context and evidence when they’re ready.</p></aside>
+          </div>
+        </section>
+        <section className="section wrap" id="about" aria-labelledby="about-title"><SectionHeading number="02" label="BACKGROUND & APPROACH" title="A business lens. A builder’s curiosity." id="about-title" description="Understand the need, make the work tangible, and check the result." /><div className="background-grid"><div className="about-copy"><p className="lead">{site.about}</p><h3 className="small-heading">What I’m exploring</h3><ul className="interest-list">{site.interests.map(interest => <li key={interest}>{interest}</li>)}</ul></div><div className="approach-content" id="approach"><h3>How I approach the work</h3><div className="principles"><div><span aria-hidden="true">01</span><h4>Understand the need</h4><p>Ask how the work gets done and where people encounter friction.</p></div><div><span aria-hidden="true">02</span><h4>Make it tangible</h4><p>Build something specific enough to try, discuss, and improve.</p></div><div><span aria-hidden="true">03</span><h4>Check the work</h4><p>Use tests, evidence, and honest limitations to guide the next step.</p></div></div><dl className="skills">{site.skills.map(skill => <div key={skill.label}><dt>{skill.label}</dt><dd>{skill.text}</dd></div>)}</dl></div></div></section>
+        <section className="section wrap" id="experience" aria-labelledby="experience-title"><SectionHeading number="03" label="TECHNICAL LEADERSHIP / EXPERIENCE" title="Where I’ve put the work to use." id="experience-title" /><div className="experience">{site.experience.map(item => <article className="experience-entry" key={`${item.organization}-${item.title}`}><span className="experience-dates">{item.dates}</span><h3>{item.title}</h3><p className="experience-meta">{item.organization}</p><p>{item.summary}</p></article>)}</div></section>
+        <section className="contact wrap" id="contact" aria-labelledby="contact-title"><div><p className="eyebrow">04 / CONTACT</p><h2 id="contact-title">Let’s make<br />something useful.</h2></div><div className="contact-copy"><p>Have an opportunity or a project in mind? I’d welcome a conversation.</p><a className="button button--primary" href={`mailto:${site.email}`}>Email Diego<Arrow /></a><a className="email-link" href={`mailto:${site.email}`}>{site.email}</a><div className="contact-links"><TextLink href={site.linkedin}>LinkedIn</TextLink><TextLink href={site.github}>GitHub</TextLink><TextLink href={site.resume}>View résumé</TextLink></div></div></section>
       </main>
       <footer className="wrap"><span>© {site.name}</span><a href="#top">Back to top ↑</a><TextLink href={site.portfolioRepo}>Portfolio source</TextLink></footer>
     </>
