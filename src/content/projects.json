@@ -8,7 +8,7 @@
     "summary": "A chapter mobile app for finding events, meeting the E-Board, and sharing photos.",
     "role": "E-Board content updates and app support",
     "scope": "Collaborative chapter app",
-    "verifiedContribution": "Added member information and headshots, updated profiles, and contributed error fixes.",
+    "verifiedContribution": "Added two E-Board profiles, updated member information and headshots, and committed loading-screen layout and dependency fixes.",
     "tags": [
       "React Native",
       "Expo",
@@ -22,11 +22,19 @@
       },
       {
         "title": "My contribution",
-        "text": "I contributed E-Board member information and headshots, including image updates and profile changes. I also worked on error fixes. The GitHub repository belongs to my project partner, AnabhayanA.",
+        "text": "I added two E-Board profiles, updated member information and headshots, and committed loading-screen layout and dependency fixes. My project partner, AnabhayanA, owns the repository.",
         "links": [
           {
             "label": "See my E-Board update",
             "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/768aa0d"
+          },
+          {
+            "label": "See my headshot updates",
+            "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/aff7214c2863175ff8c1b98a97cb141e998dc68e"
+          },
+          {
+            "label": "See my loading-screen and dependency fixes",
+            "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/44e5a033497fc267570cbe378f5610a4e87201f5"
           }
         ]
       },
@@ -49,7 +57,7 @@
         "url": "https://github.com/AnabhayanA/alpfa-njit-app/commit/768aa0d"
       }
     ],
-    "cardContribution": "I added E-Board member information and headshots and worked on error fixes.",
+    "cardContribution": "I added E-Board profiles and headshots and committed loading-screen and dependency fixes.",
     "image": {
       "src": "./assets/visuals/alpfa-dashboard.jpg",
       "alt": "ALPFA NJIT app dashboard with a chapter event and links to events, the E-Board, and other app sections.",
@@ -108,32 +116,32 @@
     "kind": "Individual · Operations",
     "status": "Packaged application",
     "title": "ZipHeatMap",
-    "summary": "A ZIP-code mapping tool I developed to help my department understand where donors come from.",
+    "summary": "I built MATLAB heat maps that made the department’s donor concentration by ZIP code easier to see and present.",
     "role": "Application developer",
     "scope": "Individual departmental tool",
-    "verifiedContribution": "Built a MATLAB workflow for ZIP validation, state summaries, filtering, and mapping.",
+    "verifiedContribution": "Built the MATLAB ZIP-code validation, filtering, and heat-map workflow for department presentations.",
     "tags": [
       "MATLAB",
       "Data validation",
       "Mapping"
     ],
-    "overview": "I developed ZipHeatMap for my operations department to turn ZIP-code data into a geographic view of where donors come from.",
+    "overview": "I developed ZipHeatMap for my University Advancement operations work. It turns donor ZIP-code data into geographic heat maps so staff can see where most donors are concentrated. The maps made the geographic pattern easier to see and present to department leadership.",
     "sections": [
       {
         "title": "The problem",
-        "text": "The department needed a way to explore the geographic distribution of donors and make ZIP-code information easier to review."
+        "text": "The department needed a clear geographic view of donor concentration by ZIP code that could be used to communicate the distribution at a high level."
       },
       {
         "title": "My contribution",
-        "text": "I developed a MATLAB application that accepts ZIP-code data and brings validation, state-level summaries, filtering, and mapping into one workflow."
+        "text": "I developed a MATLAB application that checks ZIP-code data, matches it to reference coordinates, summarizes and filters the results, and generates heat maps."
       },
       {
         "title": "How it works",
-        "text": "The application matches ZIP codes against a reference spreadsheet, identifies invalid or unmatched entries, and summarizes data by state. Users can select states, view a ZIP-code frequency map, and export plotted data or a map image."
+        "text": "The application matches ZIP codes against a reference spreadsheet, flags invalid or unmatched entries, and summarizes results by state. Staff can filter locations, view ZIP-code frequency on a heat map, and export a map image or plotted data for presentations."
       },
       {
         "title": "Checks & limitations",
-        "text": "The application instructions describe the data checks and export workflow. This portfolio description is based on those instructions and my account of its purpose; the packaged Windows app was not rerun for this portfolio. It requires MATLAB Runtime R2025b."
+        "text": "The maps made the geographic pattern easier to see and present to department leadership. The packaged Windows app and its application instructions were not available to rerun or verify during this review. I have no measured time-savings figure or documented leadership decision to report."
       },
       {
         "title": "Privacy",
@@ -141,7 +149,7 @@
       }
     ],
     "links": [],
-    "cardContribution": "I developed a MATLAB tool to validate and map ZIP-code data for my department.",
+    "cardContribution": "I built ZIP-code heat maps that made donor concentration easier to see and present.",
     "image": {
       "src": "./assets/visuals/zipheatmap.svg",
       "alt": "Illustrated ZipHeatMap workflow from ZIP-code data to checks and a frequency map.",
@@ -166,7 +174,7 @@
       "PostgreSQL",
       "Gemini"
     ],
-    "overview": "Tempo started as a collaborative planning project. Its newer local rebuild combines task and calendar planning with an optional Gemini assistant.",
+    "overview": "Tempo started as a collaborative planning project. Its published Next.js rebuild combines task and calendar planning with an optional Gemini assistant; manual planning works without an AI key.",
     "sections": [
       {
         "title": "The problem",
@@ -182,11 +190,17 @@
       },
       {
         "title": "What was checked",
-        "text": "The rebuild’s notes report unit, database, and desktop/mobile browser checks, including tests using simulated services. Live checks documented successful calendar flows as well as a later Gemini provider outage; they do not establish a clean full live desktop pass. For this portfolio, a mocked manual-planning flow was run locally to capture the interface with fictional data."
+        "text": "The published rebuild branch’s progress record reports 43 unit, 22 embedded-database, and 10 desktop/mobile browser tests. The browser tests use mocked external services; the project record says live Supabase, Gemini, calendar-feed, and hosted-cron integrations remain unverified. For this portfolio, a mocked manual-planning flow was run locally to capture the interface with fictional data.",
+        "links": [
+          {
+            "label": "Read rebuild verification and open limits",
+            "url": "https://github.com/dlg309/Tempo-AI-Assistant/blob/revamp/tempo-next/docs/PROGRESS.md"
+          }
+        ]
       },
       {
         "title": "Version & limitations",
-        "text": "The local Next.js rebuild is ahead of its published branch and has not been deployed to production. The default repository link opens the earlier React/Vite and FastAPI version; the linked rebuild branch may not include the latest local changes.",
+        "text": "The Next.js rebuild is published on the revamp/tempo-next branch, which GitHub showed three commits ahead of its upstream main when reviewed. The project README says it has no production deployment. The repository’s default main branch remains the earlier React/Vite and FastAPI version; the screenshot’s exact commit is not recorded.",
         "links": [
           {
             "label": "View published rebuild branch",
@@ -246,20 +260,20 @@
   {
     "id": "echo-mountain",
     "number": "04",
-    "kind": "Browser game project",
+    "kind": "Individual · Browser game",
     "status": "Prototype in development",
     "title": "Echo Mountain",
     "summary": "A browser snowboarding game with downhill runs, aerial tricks, and keyboard or touch controls.",
-    "role": "Project owner",
+    "role": "Primary repository contributor",
     "scope": "Browser game prototype",
-    "verifiedContribution": "The browser game was run for screenshots; its test suite passed 57 checks.",
+    "verifiedContribution": "Public history attributes the prototype, test additions, and game-mode updates to my GitHub account.",
     "tags": [
       "React / JavaScript",
       "Vite",
       "Game systems"
     ],
     "overview": "Echo Mountain connects an interest in snowboarding with game development through a browser game with multiple riding modes, aerial tricks, and local records.",
-    "cardContribution": "Downhill, Practice, Trick run, and Halfpipe modes with keyboard and touch controls.",
+    "cardContribution": "I added the prototype and iterated on game modes, controls, and tests.",
     "sections": [
       {
         "title": "The idea & audience",
@@ -267,7 +281,7 @@
       },
       {
         "title": "Project context",
-        "text": "The repository is under my GitHub account. The available records show the project’s features and checks, but do not separate my implementation work from any development assistance."
+        "text": "The public repository lists my account as its sole contributor. Its history includes the initial prototype and later feature and test commits. The records do not state whether I used development assistance, so I am not making a claim about that."
       },
       {
         "title": "What was built",
@@ -276,16 +290,30 @@
           {
             "label": "Read browser controls and features",
             "url": "https://github.com/dlg309/Echo-Mountain/blob/main/echo-mountain/README.md"
+          },
+          {
+            "label": "See the initial prototype commit",
+            "url": "https://github.com/dlg309/Echo-Mountain/commit/1345baf5db038dd01233321467ecfbeaad04d3f3"
+          },
+          {
+            "label": "See later mode and test work",
+            "url": "https://github.com/dlg309/Echo-Mountain/commit/41c2f4c73dcb097eee29a30e7751557cef276c7d"
           }
         ]
       },
       {
         "title": "Checks & screenshot evidence",
-        "text": "The browser game was run locally for these screenshots, and all 57 of its Node tests passed during the portfolio review."
+        "text": "The Node test suite was run locally for this portfolio review and 57 tests passed; the result is recorded in the local review log, not a public CI run. The public README documents how to run the suite, and the test files are linked here.",
+        "links": [
+          {
+            "label": "Inspect the public test suite",
+            "url": "https://github.com/dlg309/Echo-Mountain/tree/main/echo-mountain/tests"
+          }
+        ]
       },
       {
         "title": "Limitations & next steps",
-        "text": "The game remains a prototype. Automated checks and local screenshots do not establish performance across all devices or a complete manual gameplay review. No working public game demo was verified, so the portfolio links to source rather than a playable deployment."
+        "text": "The game remains a prototype. Automated checks and local screenshots do not establish performance across all devices or a complete manual gameplay review. The repository’s GitHub Pages URL returned 404 during this review, so the portfolio links to source rather than a playable deployment."
       }
     ],
     "links": [

@@ -6,7 +6,7 @@
 
 Learn whether an internship reviewer can quickly understand Diego’s interests, identify his contribution, inspect evidence, and find a way to contact him. A second perspective is a potential collaborator looking for a practical explanation of a project. These are hypotheses to test, not conclusions.
 
-Run a short one-on-one session with consenting peers, a mentor, or a reviewer. Aim for a mix of mobile and desktop use where possible. Show the current local or otherwise authorized site. Ask each participant to think aloud; observe without steering them or explaining the layout. Ask permission before taking notes, and ask separately before any audio, video, or screen recording. A participant may skip a question or stop at any time. No tracking or recording has been installed.
+Run the neutral peer-review script with three separate consenting peers, mentors, or reviewers. Aim for a mix of mobile and desktop use where possible. Show the current local or otherwise authorized site. Ask each participant to think aloud; observe without steering them or explaining the layout. Ask permission before taking notes, and ask separately before any audio, video, or screen recording. A participant may skip a question or stop at any time. No tracking or recording has been installed. The fillable three-session sheet is in the ignored `private/design-review/PEER_REVIEW.md` file.
 
 ## First impression: five seconds
 
@@ -36,7 +36,7 @@ After each task, ask “What, if anything, was confusing?” Avoid leading quest
 
 ## Required peer review task
 
-Ask one real reviewer to complete this task from the homepage without coaching: “Find my individual project, explain what I contributed to the group project, then locate my code, résumé, and professional profiles.” Record their actual observation, any issue they encounter, the change made in response, and the retest result in `PORTFOLIO_RECORD.md`. Keep the record blank until this review has happened; do not infer feedback from automated checks.
+For three real reviewers, use the short neutral sequence in `private/design-review/PEER_REVIEW.md`: a five-second homepage recall, finding Diego’s ALPFA contribution, then finding the résumé and email. Record each person’s actual observation, hesitation, task completion, and any assistance. If a change follows, retest the affected task with a real person and record the actual result in `PORTFOLIO_RECORD.md`. Keep results blank until sessions happen; do not infer feedback from automated checks.
 
 ## Navigation check: tree test
 
