@@ -6,6 +6,8 @@
     "status": "In development",
     "title": "ALPFA NJIT App",
     "summary": "A chapter mobile app for finding events, meeting the E-Board, and sharing photos.",
+    "role": "E-Board content updates and app support",
+    "deliverable": "Added member information and headshots, and contributed error fixes.",
     "tags": [
       "React Native",
       "Expo",
@@ -52,7 +54,9 @@
       "alt": "ALPFA NJIT app dashboard with a chapter event and links to events, the E-Board, and other app sections.",
       "caption": "ALPFA NJIT app dashboard. Event details reflect the time of capture.",
       "fullSize": true,
-      "linkLabel": "View full-size dashboard screenshot"
+      "linkLabel": "View full-size dashboard screenshot",
+      "width": 1179,
+      "height": 2421
     },
     "gallery": [
       {
@@ -60,32 +64,42 @@
         "alt": "ALPFA NJIT app events screen displaying chapter events and notification controls.",
         "caption": "Events screen. The listed events reflect the time of capture.",
         "fullSize": true,
-        "linkLabel": "View full-size events screenshot"
+        "linkLabel": "View full-size events screenshot",
+        "width": 1179,
+        "height": 2427
       },
       {
         "src": "./assets/visuals/alpfa-about.jpg",
         "alt": "ALPFA NJIT app About screen describing the chapter, its mission, and ways to get involved.",
         "caption": "About screen.",
         "fullSize": true,
-        "linkLabel": "View full-size About screenshot"
+        "linkLabel": "View full-size About screenshot",
+        "width": 1179,
+        "height": 2378
       },
       {
         "src": "./assets/visuals/alpfa-loading.jpg",
         "alt": "ALPFA NJIT app loading screen displaying the ALPFA and NJIT marks.",
         "caption": "Loading screen.",
         "fullSize": true,
-        "linkLabel": "View full-size loading screenshot"
+        "linkLabel": "View full-size loading screenshot",
+        "width": 1095,
+        "height": 2373
       },
       {
         "src": "./assets/visuals/alpfa-credit.jpg",
         "alt": "ALPFA NJIT app credits section listing Diego Guevara as IT Committee app development support.",
         "caption": "App credits showing Diego’s development support.",
         "fullSize": true,
-        "linkLabel": "View full-size app credits screenshot"
+        "linkLabel": "View full-size app credits screenshot",
+        "width": 1179,
+        "height": 1077
       }
     ],
     "galleryPreviewCaption": "ALPFA NJIT app dashboard and events screens. Event details reflect the time of capture.",
-    "galleryLayout": "phone"
+    "galleryLayout": "phone",
+    "cardCaption": "Dashboard and events · actual app screens",
+    "featureCaption": "Actual app screens. Events reflect the time of capture."
   },
   {
     "id": "zipheatmap",
@@ -94,6 +108,8 @@
     "status": "Packaged application",
     "title": "ZipHeatMap",
     "summary": "A ZIP-code mapping tool I developed to help my department understand where donors come from.",
+    "role": "Application developer",
+    "deliverable": "Built a MATLAB workflow for ZIP validation, state summaries, filtering, and mapping.",
     "tags": [
       "MATLAB",
       "Data validation",
@@ -127,8 +143,11 @@
     "image": {
       "src": "./assets/visuals/zipheatmap.svg",
       "alt": "Illustrated ZipHeatMap workflow from ZIP-code data to checks and a frequency map.",
-      "caption": "Illustrative workflow, not an application screenshot."
-    }
+      "caption": "Illustrative workflow, not an application screenshot.",
+      "width": 720,
+      "height": 440
+    },
+    "cardCaption": "ZIP-code workflow · illustrative diagram"
   },
   {
     "id": "tempo",
@@ -137,6 +156,8 @@
     "status": "Rebuild in progress",
     "title": "Tempo",
     "summary": "A collaborative planner that turns tasks, available time, and commitments into a reviewable schedule.",
+    "role": "Database setup, API checks, and rebuild review",
+    "deliverable": "Configured PostgreSQL connectivity, checked FastAPI operations, and reviewed planning work in the rebuild.",
     "tags": [
       "Next.js",
       "PostgreSQL",
@@ -186,28 +207,38 @@
       "src": "./assets/visuals/tempo-today.png",
       "alt": "Tempo Today dashboard with fictional tasks, a sample calendar, and an assistant panel.",
       "caption": "The local Tempo dashboard with fictional sample data and a mocked backend.",
-      "fullSize": true
+      "fullSize": true,
+      "width": 1440,
+      "height": 1713
     },
     "gallery": [
       {
         "src": "./assets/visuals/tempo-tasks.png",
         "alt": "Tempo task list with fictional school and work tasks.",
         "caption": "The task list with fictional sample tasks.",
-        "fullSize": true
+        "fullSize": true,
+        "width": 1440,
+        "height": 1000
       },
       {
         "src": "./assets/visuals/tempo-proposal.png",
         "alt": "Tempo task list with a proposed schedule ready for review in the assistant panel.",
         "caption": "A proposed plan generated in a mocked local planning flow.",
-        "fullSize": true
+        "fullSize": true,
+        "width": 1440,
+        "height": 1000
       },
       {
         "src": "./assets/visuals/tempo-calendar.png",
         "alt": "Tempo weekly calendar with fictional school and work commitments.",
         "caption": "The calendar view with fictional commitments.",
-        "fullSize": true
+        "fullSize": true,
+        "width": 1440,
+        "height": 1422
       }
-    ]
+    ],
+    "cardCaption": "Dashboard detail · fictional sample data",
+    "previewFit": "top"
   },
   {
     "id": "echo-mountain",
@@ -216,6 +247,8 @@
     "status": "Local prototype",
     "title": "Echo Mountain",
     "summary": "A top-down snowboarding game with changing courses, obstacles, and local run records.",
+    "role": "Individual contribution not documented",
+    "deliverable": "Playable browser prototype with configurable trails, obstacles, and local run records.",
     "tags": [
       "JavaScript",
       "HTML & CSS",
@@ -250,17 +283,21 @@
       "src": "./assets/visuals/echo-mountain-gameplay.png",
       "alt": "Echo Mountain beginner run with a snowboarder on the slope and a score, speed, time, and distance display.",
       "caption": "A local gameplay capture showing a beginner run.",
-      "fullSize": true
+      "fullSize": true,
+      "width": 1440,
+      "height": 1298
     },
     "gallery": [
       {
         "src": "./assets/visuals/echo-mountain-expert.png",
         "alt": "Echo Mountain expert trail setup with sunset and expert fog selected.",
         "caption": "Expert course settings in the local prototype.",
-        "fullSize": true
+        "fullSize": true,
+        "width": 1440,
+        "height": 1298
       }
     ],
-    "cardContributionLabel": "Project overview:"
+    "cardContributionLabel": "Project overview"
   },
   {
     "id": "rps",
@@ -269,6 +306,8 @@
     "status": "Completed coursework",
     "title": "Rock, Paper, Scissors",
     "summary": "A small game with a bigger question: how do you know a result is right?",
+    "role": "Project direction and review (AI-assisted implementation)",
+    "deliverable": "Defined checks, requested history and streak features, and reviewed gameplay and keyboard replay.",
     "tags": [
       "Python",
       "Flask",
@@ -322,15 +361,20 @@
       "src": "./assets/visuals/rps-gameplay.png",
       "alt": "Rock, Paper, Scissors after a tied round, showing three recent games and a winning streak.",
       "caption": "A local game session showing a completed round, recent games, and streaks.",
-      "fullSize": true
+      "fullSize": true,
+      "width": 1440,
+      "height": 1040
     },
     "gallery": [
       {
         "src": "./assets/visuals/rps-ready.png",
         "alt": "Rock, Paper, Scissors game screen before the first round, with move choices and an empty game history.",
         "caption": "The game before the first round in a new local session.",
-        "fullSize": true
+        "fullSize": true,
+        "width": 1440,
+        "height": 1040
       }
-    ]
+    ],
+    "cardCaption": "Round result, recent games, and streaks"
   }
 ]

@@ -32,6 +32,10 @@ Start each task at the homepage. Read each prompt neutrally, allow the participa
 
 After each task, ask “What, if anything, was confusing?” Avoid leading questions or helping unless the participant requests it; record any assistance. Check the résumé and email destination in advance so a technical outage is not mistaken for a navigation issue.
 
+## Required peer review task
+
+Ask one real reviewer to complete this task from the homepage without coaching: “Find my individual project, explain what I contributed to the group project, then locate my code, résumé, and professional profiles.” Record their actual observation, any issue they encounter, the change made in response, and the retest result in `PORTFOLIO_RECORD.md`. Keep the record blank until this review has happened; do not infer feedback from automated checks.
+
 ## Navigation check: tree test
 
 If the site’s navigation labels or hierarchy change, show a text-only list of the actual top-level links from the current build, without styling. Ask where the participant would first look for Diego’s résumé, his ALPFA contribution, and work experience. Record the first choice and any revised choice. Keep the list synchronized with the site; do not tell the participant where the answer lives. Skip this exercise if no navigation question remains.

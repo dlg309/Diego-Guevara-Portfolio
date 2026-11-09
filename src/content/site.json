@@ -1,9 +1,9 @@
 {
   "name": "Diego Guevara",
   "eyebrow": "Business + information systems · NJIT",
-  "headline": "Useful technology,",
-  "intro": "I’m Diego, an NJIT Business and Information Systems student building software and exploring ways to improve business workflows.",
-  "availability": "Exploring internships and opportunities to learn, contribute, and solve practical problems.",
+  "headline": "Business thinking.",
+  "intro": "I study business and information systems at NJIT and build software for useful work.",
+  "availability": "Exploring internships in business and technology.",
   "about": "I’m drawn to the space between a problem and the people experiencing it. I want to understand how work gets done, ask better questions, and build solutions that are clear and useful.",
   "interests": [
     "Software & practical problem-solving",
@@ -20,13 +20,13 @@
     {
       "title": "Department Assistant",
       "organization": "NJIT · University Advancement & Development",
-      "dates": "Jul 2025–Present",
+      "dates": "Jul 2025 - Present",
       "summary": "I maintain and check database records, investigate discrepancies, and support document, event, and office workflows. I also developed ZipHeatMap to help the department explore donor ZIP-code data."
     },
     {
       "title": "Poll Worker / Election Administrator",
       "organization": "Essex County Board of Elections",
-      "dates": "Nov 2023–May 2024",
+      "dates": "Nov 2023 - May 2024",
       "summary": "I prepared voting equipment, verified voter records, trained staff on procedures, and escalated operational issues through established channels."
     }
   ],
@@ -44,5 +44,7 @@
       "text": "How software, data, and AI tools can support useful business workflows."
     }
   ],
-  "headlineEmphasis": "made for people."
+  "headlineEmphasis": "Practical software.",
+  "professionalFocus": "I’m exploring forward-deployed AI, UI/UX, and technical product roles.",
+  "featuredProject": "alpfa"
 }

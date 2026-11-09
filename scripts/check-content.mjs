@@ -54,6 +54,8 @@ for (const project of projects) {
   check(typeof project.id === 'string' && /^[a-z0-9-]+$/.test(project.id), `${name} needs a URL-safe ID`);
   check(!ids.has(project.id), `${name} has a duplicate project ID`);
   ids.add(project.id);
+  check(typeof project.role === 'string' && project.role.trim().length > 0, `${name} needs a documented role or an explicit role limitation`);
+  check(typeof project.deliverable === 'string' && project.deliverable.trim().length > 0, `${name} needs a key deliverable`);
   if (project.image) checkImage(project.image, name);
   for (const image of project.gallery || []) checkImage(image, `${name} gallery`);
   for (const link of [...(project.links || []), ...(project.sections || []).flatMap((section) => section.links || [])]) {
