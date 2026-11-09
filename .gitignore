@@ -21,3 +21,6 @@ docs/alpfa-njit-app/
 docs/Tempo/
 docs/RPS_218Game/
 docs/echo-mountain/
+
+# Temporary base checkout used by bundle comparison CI.
+.baseline/

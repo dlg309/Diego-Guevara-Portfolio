@@ -1,59 +1,72 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
-import { motion, useReducedMotion } from 'motion/react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { Arrow, TextLink, ProjectMedia, assetHref } from './ProjectMedia';
 import site from './content/site.json';
 import projects from './content/projects.json';
 
-// Keep the editable content paths compatible with Vite and subdirectory hosting.
-const assetHref = (href = '') => href.startsWith('./assets/') ? `./${href.slice('./assets/'.length)}` : href;
+const CaseDetails = lazy(() => import('./CaseDetails'));
 
-function Arrow({ down = false }) {
-  return <span aria-hidden="true" className="arrow">{down ? '↓' : '↗'}</span>;
-}
+const navigationItems = [
+  { label: 'Home', href: '#top' },
+  { label: 'Work', href: '#work' },
+  { label: 'Project notes', href: '#case-studies' },
+  { label: 'Background', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
+];
 
-function TextLink({ href, children, className = 'text-link' }) {
-  if (!href) return null;
-  return <a className={className} href={assetHref(href)}>{children}<Arrow /></a>;
-}
-
-function ProjectImage({ image, eager = false, className = '' }) {
-  return <img className={className} src={assetHref(image.src)} alt={image.alt} width={image.width} height={image.height} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" />;
-}
-
-function ImageFigure({ image, className = '' }) {
+function SiteNavigation({ activeSection }) {
   return (
-    <figure className={`image-figure ${className}`}>
-      <ProjectImage image={image} />
-      <figcaption>{image.caption}{image.fullSize && <> <a href={assetHref(image.src)}>{image.linkLabel || <>Open full image<span className="sr-only">: {image.alt}</span></>}</a></>}</figcaption>
-    </figure>
+    <nav className="nav" aria-label="Main navigation">
+      <ul className="nav-list">
+        {navigationItems.map(item => <li key={item.href}><a className="nav-link" href={item.href} aria-current={activeSection === item.href ? 'location' : undefined}>{item.label}</a></li>)}
+      </ul>
+    </nav>
   );
 }
 
-function ProjectMedia({ project, detail = false, eager = false }) {
-  const { image, gallery = [] } = project;
-  if (!image) return null;
-  if (!detail && project.cardMediaNote) {
-    return <div className="project-media-note"><span className="eyebrow">{project.mediaLabel || 'PROJECT IN PROGRESS'}</span><p>{project.cardMediaNote}</p><span>Earlier-version screenshots in the case study <span aria-hidden="true">↓</span></span></div>;
-  }
-  if (!detail) {
-    const phones = project.galleryLayout === 'phone';
-    return (
-      <figure className={`project-media ${phones ? 'project-media--phones' : ''}`}>
-        <div className={`media-viewport ${project.previewFit === 'top' ? 'media-viewport--top' : ''}`}>
-          {phones ? <div className="phone-pair">{[image, gallery[0]].filter(Boolean).map((item, index) => <ProjectImage key={item.src} image={item} eager={eager && index === 0} />)}</div> : <ProjectImage image={image} eager={eager} />}
-        </div>
-        <figcaption>{project.cardCaption || image.caption}</figcaption>
-      </figure>
-    );
-  }
-  const phones = project.galleryLayout === 'phone';
-  const leading = phones ? [image, gallery[0]].filter(Boolean) : [image];
-  const additional = phones ? gallery.slice(1) : gallery;
+function MobileNavigation({ activeSection }) {
+  const [open, setOpen] = useState(false);
+  const destination = useRef(null);
+  useEffect(() => {
+    document.body.classList.toggle('navigation-open', open);
+    return () => document.body.classList.remove('navigation-open');
+  }, [open]);
   return (
-    <div className="case-media">
-      <div className={phones ? 'phone-gallery' : 'screenshot-gallery'}>{leading.map(item => <ImageFigure key={item.src} image={item} />)}</div>
-      {additional.length > 0 && <details className="more-screens"><summary>More screenshots<span className="sr-only"> for {project.title}</span><span aria-hidden="true">＋</span></summary><div className={phones ? 'phone-gallery' : 'screenshot-gallery'}>{additional.map(item => <ImageFigure key={item.src} image={item} />)}</div></details>}
-    </div>
+    <Dialog.Root open={open} onOpenChange={nextOpen => { if (nextOpen) destination.current = null; setOpen(nextOpen); }}>
+      <Dialog.Trigger className="menu-toggle" aria-label="Open navigation menu">
+        <span className="menu-icon" aria-hidden="true"><span /></span>
+        <span className="menu-label">Menu</span>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        {/* CSS scroll locking preserves the modal focus trap without injected styles. */}
+        <div className="mobile-nav-overlay" aria-hidden="true" />
+        <Dialog.Content className="mobile-nav-panel" onCloseAutoFocus={event => {
+          if (!destination.current) return;
+          const target = document.querySelector(destination.current);
+          destination.current = null;
+          if (!target) return;
+          // A chosen anchor should receive focus; restoring the menu trigger
+          // would scroll a non-sticky landscape header back to the page top.
+          event.preventDefault();
+          requestAnimationFrame(() => {
+            target.tabIndex = -1;
+            target.focus({ preventScroll: true });
+            target.scrollIntoView({ block: 'start', behavior: 'instant' });
+          });
+        }}>
+          <div className="mobile-nav-heading">
+            <Dialog.Title>Navigate</Dialog.Title>
+            <Dialog.Close className="menu-close" aria-label="Close navigation"><span aria-hidden="true" /></Dialog.Close>
+          </div>
+          <Dialog.Description className="sr-only">Choose a section of the portfolio.</Dialog.Description>
+          <nav className="mobile-nav" aria-label="Mobile navigation">
+            {navigationItems.map(item => <Dialog.Close asChild key={item.href}><a className="mobile-nav-link" href={item.href} onClick={() => { destination.current = item.href; }} aria-current={activeSection === item.href ? 'location' : undefined}>{item.label}<span aria-hidden="true">↘</span></a></Dialog.Close>)}
+          </nav>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 
@@ -65,7 +78,7 @@ function ProjectCard({ project, eager = false }) {
         <div className="project-meta"><span>{project.number} / {project.kind}</span><span className="status">{project.status}</span></div>
         <h3 id={`card-${project.id}`}>{project.title}</h3>
         <p>{project.summary}</p>
-        <dl className="project-proof"><div><dt>Role</dt><dd>{project.role}</dd></div><div><dt>Scope / timeline</dt><dd>{project.scope}</dd></div><div><dt>Verified contribution</dt><dd>{project.verifiedContribution}</dd></div></dl>
+        <dl className="project-proof"><div><dt>Role</dt><dd>{project.role}</dd></div><div><dt>Scope</dt><dd>{project.scope}</dd></div><div><dt>{project.proofLabel || 'Verified contribution'}</dt><dd>{project.verifiedContribution}</dd></div></dl>
       </div>
       <ProjectMedia project={project} eager={eager} />
       <div className="project-card__footer">
@@ -76,9 +89,27 @@ function ProjectCard({ project, eager = false }) {
   );
 }
 
+// Radix measures on disclosure changes. Lazy content and gallery expansion can
+// change the natural height later, so observe the inner wrapper, not the panel
+// whose height is being animated (which would cause a measurement feedback loop).
+function MeasuredCaseContent({ children }) {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const content = ref.current;
+    const panel = content.parentElement;
+    const measure = () => panel.style.setProperty('--case-content-height', `${content.getBoundingClientRect().height}px`);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(content);
+    return () => {
+      observer.disconnect();
+      panel.style.removeProperty('--case-content-height');
+    };
+  }, []);
+  return <div className="case-measure" ref={ref}>{children}</div>;
+}
+
 function CaseStudy({ project }) {
-  const sectionUrls = new Set(project.sections.flatMap(section => (section.links || []).map(link => link.url)));
-  const remainingLinks = (project.links || []).filter(link => !sectionUrls.has(link.url));
   return (
     <Accordion.Item asChild className="case-study" value={project.id}>
       <article id={project.id}>
@@ -91,15 +122,7 @@ function CaseStudy({ project }) {
           </Accordion.Trigger>
         </Accordion.Header>
         <Accordion.Content className="case-panel">
-          <div className="case-body">
-        <div className="case-intro"><h3>{project.title}</h3><p>{project.overview}</p></div>
-        <div className="case-content">
-          <ProjectMedia project={project} detail />
-          <div className="case-sections">{project.sections.map(section => <section key={section.title}><h4>{section.title}</h4><p>{section.text}</p>{section.links?.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</section>)}</div>
-        </div>
-        {remainingLinks.length > 0 && <div className="case-links">{remainingLinks.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</div>}
-        <a className="back-link" href="#work">↑ Back to selected work</a>
-          </div>
+          <MeasuredCaseContent><Suspense fallback={<p role="status">Loading case study…</p>}><CaseDetails project={project} /></Suspense></MeasuredCaseContent>
         </Accordion.Content>
       </article>
     </Accordion.Item>
@@ -109,13 +132,6 @@ function CaseStudy({ project }) {
 function SectionHeading({ number, label, title, description, id }) {
   return <div className="section-heading"><div><p className="eyebrow">{number && `${number} / `}{label}</p><h2 id={id}>{title}</h2></div>{description && <p>{description}</p>}</div>;
 }
-
-const springTransition = { type: 'spring', stiffness: 340, damping: 30 };
-const projectGridVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
-const projectCardVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: springTransition },
-};
 
 function useCaseStudyAnchors() {
   useEffect(() => {
@@ -140,19 +156,46 @@ function useCaseStudyAnchors() {
   }, []);
 }
 
-export default function App() {
-  useCaseStudyAnchors();
-  const shouldReduceMotion = useReducedMotion();
-  const projectOrder = site.projectOrder || projects.map(project => project.id);
-  const orderedProjects = [...projects]
+const projectOrder = site.projectOrder || projects.map(project => project.id);
+const orderedProjects = [...projects]
     .sort((left, right) => projectOrder.indexOf(left.id) - projectOrder.indexOf(right.id))
     .map((project, index) => ({ ...project, number: String(index + 1).padStart(2, '0') }));
+
+export default function App() {
+  useCaseStudyAnchors();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('#top');
+  useEffect(() => {
+    let frame = 0;
+    const updateHeader = () => {
+      setIsScrolled(window.scrollY > 120);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const marker = window.innerHeight * 0.3;
+        const atPageEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        const current = atPageEnd ? navigationItems[navigationItems.length - 1] : navigationItems.findLast(item => {
+          const section = document.querySelector(item.href);
+          return section && section.getBoundingClientRect().top <= marker;
+        });
+        setActiveSection(current?.href || '#top');
+      });
+    };
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    window.addEventListener('resize', updateHeader);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateHeader);
+      window.removeEventListener('resize', updateHeader);
+    };
+  }, []);
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
-      <header className="site-header"><div className="wrap header-inner">
+      <header className={`site-header${isScrolled ? ' site-header--scrolled' : ''}`}><div className="wrap header-inner">
         <a className="brand" href="#top"><span className="brand-mark" aria-hidden="true">DG.</span><span>{site.name}<small>BUSINESS + TECHNOLOGY</small></span></a>
-        <nav className="nav" aria-label="Main navigation"><a href="#top">Home</a><a href="#work">Work</a><a href="#case-studies">Project notes</a><a href="#about">Background</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+        <SiteNavigation activeSection={activeSection} />
+        <MobileNavigation activeSection={activeSection} />
       </div></header>
       <main id="main" tabIndex={-1}>
         <section className="hero wrap" id="top" aria-labelledby="hero-title">
@@ -161,13 +204,12 @@ export default function App() {
         </section>
         <section className="section section--work wrap" id="work" aria-labelledby="work-title">
           <SectionHeading number="01" label="SELECTED WORK" title="Projects with a purpose." id="work-title" description="Software, data, and operations projects—with my role and the evidence close at hand." />
-          <motion.div className="project-grid" variants={projectGridVariants} initial={shouldReduceMotion ? false : 'hidden'} whileInView={shouldReduceMotion ? undefined : 'visible'} viewport={{ once: true, amount: 0.1 }}>
-            {orderedProjects.map((project, index) => <motion.div className="project-card-reveal" key={project.id} variants={projectCardVariants}><ProjectCard project={project} eager={index === 0} /></motion.div>)}
-          </motion.div>
+          <div className="project-grid">
+            {orderedProjects.map((project, index) => <ProjectCard key={project.id} project={project} eager={index === 0} />)}
+          </div>
           <div className="project-notes" id="case-studies" aria-labelledby="notes-title">
             <SectionHeading label="PROJECT NOTES" title="The work, in context." id="notes-title" description="Open a case study for the problem, contribution, decisions, checks, and limitations." />
             <Accordion.Root className="case-list" type="multiple">{orderedProjects.map(project => <CaseStudy key={project.id} project={project} />)}</Accordion.Root>
-            <aside className="group-note"><p><strong>Course note.</strong> The required group customer project and my specific contribution are still being confirmed. I’ll add the team context and evidence when they’re ready.</p></aside>
           </div>
         </section>
         <section className="section wrap" id="about" aria-labelledby="about-title"><SectionHeading number="02" label="BACKGROUND & APPROACH" title="A business lens. A builder’s curiosity." id="about-title" description="Understand the need, make the work tangible, and check the result." /><div className="background-grid"><div className="about-copy"><p className="lead">{site.about}</p><h3 className="small-heading">What I’m exploring</h3><ul className="interest-list">{site.interests.map(interest => <li key={interest}>{interest}</li>)}</ul></div><div className="approach-content" id="approach"><h3>How I approach the work</h3><div className="principles"><div><span aria-hidden="true">01</span><h4>Understand the need</h4><p>Ask how the work gets done and where people encounter friction.</p></div><div><span aria-hidden="true">02</span><h4>Make it tangible</h4><p>Build something specific enough to try, discuss, and improve.</p></div><div><span aria-hidden="true">03</span><h4>Check the work</h4><p>Use tests, evidence, and honest limitations to guide the next step.</p></div></div><dl className="skills">{site.skills.map(skill => <div key={skill.label}><dt>{skill.label}</dt><dd>{skill.text}</dd></div>)}</dl></div></div></section>

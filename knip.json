@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip/schema.json",
+  "entry": [
+    "tests/*.test.mjs"
+  ],
+  "project": [
+    "src/**/*.{js,jsx}",
+    "scripts/*.mjs",
+    "tests/*.test.mjs"
+  ],
+  "ignoreBinaries": [
+    "jq"
+  ]
+}

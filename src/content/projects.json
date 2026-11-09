@@ -7,7 +7,7 @@
     "title": "ALPFA NJIT App",
     "summary": "A chapter mobile app for finding events, meeting the E-Board, and sharing photos.",
     "role": "E-Board content updates and app support",
-    "scope": "Collaborative chapter app · Timeline not documented",
+    "scope": "Collaborative chapter app",
     "verifiedContribution": "Added member information and headshots, updated profiles, and contributed error fixes.",
     "tags": [
       "React Native",
@@ -110,7 +110,7 @@
     "title": "ZipHeatMap",
     "summary": "A ZIP-code mapping tool I developed to help my department understand where donors come from.",
     "role": "Application developer",
-    "scope": "Individual departmental tool · Timeline not documented",
+    "scope": "Individual departmental tool",
     "verifiedContribution": "Built a MATLAB workflow for ZIP validation, state summaries, filtering, and mapping.",
     "tags": [
       "MATLAB",
@@ -246,62 +246,91 @@
   {
     "id": "echo-mountain",
     "number": "04",
-    "kind": "Browser game · Prototype",
-    "status": "Local prototype",
+    "kind": "Browser game project",
+    "status": "Prototype in development",
     "title": "Echo Mountain",
-    "summary": "A top-down snowboarding game with changing courses, obstacles, and local run records.",
-    "role": "Individual contribution not documented",
-    "scope": "Local browser-game prototype · Timeline not documented",
-    "verifiedContribution": "Project records document a playable prototype and 19 automated tests; individual authorship is not established.",
+    "summary": "A browser snowboarding game with downhill runs, aerial tricks, and keyboard or touch controls.",
+    "role": "Project owner",
+    "scope": "Browser game prototype",
+    "verifiedContribution": "The browser game was run for screenshots; its test suite passed 57 checks.",
     "tags": [
-      "JavaScript",
-      "HTML & CSS",
-      "Game design"
+      "React / JavaScript",
+      "Vite",
+      "Game systems"
     ],
-    "overview": "A browser-based snowboarding prototype where players choose a trail, steer around obstacles, and build a score on the way down.",
-    "cardContribution": "Choose a difficulty, time of day, and optional expert fog.",
+    "overview": "Echo Mountain connects an interest in snowboarding with game development through a browser game with multiple riding modes, aerial tricks, and local records.",
+    "cardContribution": "Downhill, Practice, Trick run, and Halfpipe modes with keyboard and touch controls.",
     "sections": [
       {
-        "title": "The idea",
-        "text": "Create a downhill game that makes each run feel different through difficulty, time-of-day settings, and changing obstacles."
+        "title": "The idea & audience",
+        "text": "Explore the feel of a snowboard run through movement, jumps, and tricks in a browser, using a keyboard or touch controls."
       },
       {
-        "title": "What it includes",
-        "text": "Players steer with a keyboard or touch controls, choose a difficulty and time of day, use ramps, and try to avoid obstacles. Expert mode includes optional fog."
+        "title": "Project context",
+        "text": "The repository is under my GitHub account. The available records show the project’s features and checks, but do not separate my implementation work from any development assistance."
       },
       {
-        "title": "Scoring & records",
-        "text": "Time, close calls, and ramps contribute to the score and multiplier. Previous and longest-run markers are stored in the current browser."
+        "title": "What was built",
+        "text": "The updated React/Vite entry uses a side settings panel and offers Downhill, Practice, Trick run, and Halfpipe modes. It includes aerial tricks, pause and a riding guide, lighting choices, touch controls, and browser-local records by mode and difficulty.",
+        "links": [
+          {
+            "label": "Read browser controls and features",
+            "url": "https://github.com/dlg309/Echo-Mountain/blob/main/echo-mountain/README.md"
+          }
+        ]
       },
       {
-        "title": "What was checked",
-        "text": "The local prototype was run in a browser for these screenshots. Its 19 automated tests passed, covering rules, generated courses, jumps, fog, and records."
+        "title": "Checks & screenshot evidence",
+        "text": "The browser game was run locally for these screenshots, and all 57 of its Node tests passed during the portfolio review."
       },
       {
-        "title": "Limitations",
-        "text": "This is a local prototype; the available copy does not establish a public deployment or document individual contribution history. Browser-local records can be lost when browser data is cleared."
+        "title": "Limitations & next steps",
+        "text": "The game remains a prototype. Automated checks and local screenshots do not establish performance across all devices or a complete manual gameplay review. No working public game demo was verified, so the portfolio links to source rather than a playable deployment."
       }
     ],
-    "links": [],
+    "links": [
+      {
+        "label": "View browser repository",
+        "url": "https://github.com/dlg309/Echo-Mountain"
+      }
+    ],
     "image": {
-      "src": "./assets/visuals/echo-mountain-gameplay.png",
-      "alt": "Echo Mountain beginner run with a snowboarder on the slope and a score, speed, time, and distance display.",
-      "caption": "A local gameplay capture showing a beginner run.",
+      "src": "./assets/visuals/echo-browser-downhill.png",
+      "alt": "Echo Mountain browser game with the side settings panel, a downhill course, a snowboarder, obstacles, and live statistics.",
+      "caption": "Browser game: downhill gameplay and side settings panel.",
       "fullSize": true,
       "width": 1440,
-      "height": 1298
+      "height": 1000
     },
     "gallery": [
       {
-        "src": "./assets/visuals/echo-mountain-expert.png",
-        "alt": "Echo Mountain expert trail setup with sunset and expert fog selected.",
-        "caption": "Expert course settings in the local prototype.",
+        "src": "./assets/visuals/echo-browser-trick-run.png",
+        "alt": "Echo Mountain browser Trick run mode with ramps and live statistics.",
+        "caption": "Browser game: Trick run mode.",
         "fullSize": true,
         "width": 1440,
-        "height": 1298
+        "height": 1000
+      },
+      {
+        "src": "./assets/visuals/echo-browser-halfpipe.png",
+        "alt": "Echo Mountain browser Halfpipe mode with the snowboarder and settings panel.",
+        "caption": "Browser game: Halfpipe mode.",
+        "fullSize": true,
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "src": "./assets/visuals/echo-browser-mobile.png",
+        "alt": "Echo Mountain browser interface on a narrow screen with touch controls.",
+        "caption": "Browser game: mobile layout and touch controls.",
+        "fullSize": true,
+        "width": 390,
+        "height": 1257
       }
     ],
-    "cardContributionLabel": "Project overview"
+    "cardContributionLabel": "Project scope",
+    "cardCaption": "Browser game · actual downhill gameplay capture",
+    "proofLabel": "Verified evidence"
   },
   {
     "id": "rps",
@@ -311,7 +340,7 @@
     "title": "Rock, Paper, Scissors",
     "summary": "A small game with a bigger question: how do you know a result is right?",
     "role": "Project direction and review (AI-assisted implementation)",
-    "scope": "Individual IS218 coursework · Timeline not documented",
+    "scope": "Individual IS218 coursework",
     "verifiedContribution": "Defined checks, requested history and streak features, and reviewed gameplay and keyboard replay.",
     "tags": [
       "Python",
