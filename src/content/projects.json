@@ -108,32 +108,32 @@
     "kind": "Individual · Operations",
     "status": "Packaged application",
     "title": "ZipHeatMap",
-    "summary": "A ZIP-code mapping tool I developed to help my department understand where donors come from.",
+    "summary": "A ZIP-code mapping tool I developed to show where the department’s donors are concentrated.",
     "role": "Application developer",
     "scope": "Individual departmental tool · Timeline not documented",
-    "verifiedContribution": "Built a MATLAB workflow for ZIP validation, state summaries, filtering, and mapping.",
+    "verifiedContribution": "Built the MATLAB ZIP-code validation, filtering, and heat-map workflow used to communicate donor distribution.",
     "tags": [
       "MATLAB",
       "Data validation",
       "Mapping"
     ],
-    "overview": "I developed ZipHeatMap for my operations department to turn ZIP-code data into a geographic view of where donors come from.",
+    "overview": "I developed ZipHeatMap for my University Advancement operations work. It turns donor ZIP-code data into geographic heat maps so staff can see where most donors are concentrated and present the distribution to leadership at a high level.",
     "sections": [
       {
         "title": "The problem",
-        "text": "The department needed a way to explore the geographic distribution of donors and make ZIP-code information easier to review."
+        "text": "ZIP-code records alone made it difficult to see where donors were concentrated across the United States. My department needed a clear geographic view it could use in presentations to leadership."
       },
       {
         "title": "My contribution",
-        "text": "I developed a MATLAB application that accepts ZIP-code data and brings validation, state-level summaries, filtering, and mapping into one workflow."
+        "text": "I developed the MATLAB application to check ZIP-code data, match it to reference coordinates, filter and summarize results, and generate heat maps that communicate donor concentration at a glance."
       },
       {
         "title": "How it works",
-        "text": "The application matches ZIP codes against a reference spreadsheet, identifies invalid or unmatched entries, and summarizes data by state. Users can select states, view a ZIP-code frequency map, and export plotted data or a map image."
+        "text": "The application matches ZIP codes against a reference spreadsheet, flags invalid or unmatched entries, and summarizes data by state. Staff can filter locations, view ZIP-code frequency on a heat map, and export a map image or plotted data for presentations."
       },
       {
         "title": "Checks & limitations",
-        "text": "The application instructions describe the data checks and export workflow. This portfolio description is based on those instructions and my account of its purpose; the packaged Windows app was not rerun for this portfolio. It requires MATLAB Runtime R2025b."
+        "text": "I used the maps to show donor distribution in presentations for department leadership. I have not documented usage counts, measured time savings, or a decision made from the maps. The packaged Windows app was not rerun for this portfolio and requires MATLAB Runtime R2025b."
       },
       {
         "title": "Privacy",
@@ -141,7 +141,7 @@
       }
     ],
     "links": [],
-    "cardContribution": "I developed a MATLAB tool to validate and map ZIP-code data for my department.",
+    "cardContribution": "I built maps of donor concentration by ZIP code for department presentations.",
     "image": {
       "src": "./assets/visuals/zipheatmap.svg",
       "alt": "Illustrated ZipHeatMap workflow from ZIP-code data to checks and a frequency map.",
