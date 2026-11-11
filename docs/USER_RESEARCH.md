@@ -63,3 +63,15 @@ Open questions:
 In the public project record, publish only a consented, non-identifying summary and actual change/retest evidence. Do not imply that an issue was filed or a peer review completed unless it happened.
 
 A/B experiments, heatmaps, and session replay are not needed to start this small study. Consider them later only for a specific question, with enough consenting visitors and appropriate privacy protections; obtain authorization before adding tools or recording sessions.
+
+## Short-card and navy-surface review
+
+The cards now show purpose, one contribution sentence, an image, technology labels, and a case-study link. Role, scope, detailed checks and source links are inside the case study. Test this revision with three real reviewers; findings remain pending.
+
+Start at the homepage without coaching:
+
+1. “What did Diego contribute to the ALPFA app? Show me where you would check that.”
+2. “Find and open Diego’s résumé.”
+3. “Find a way to email Diego.”
+
+For each reviewer record device, completion, clicks/taps, first hesitation, any assistance and their actual words. The résumé and email targets are at most two clicks; the contribution task should lead to the relevant case study and evidence. If a reviewer mistakes a heading or status for a link, note the element. After fixing observed friction, repeat the affected task and record the actual retest result. Browser automation verifies functionality, not these human outcomes.

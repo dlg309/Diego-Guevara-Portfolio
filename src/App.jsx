@@ -41,7 +41,7 @@ function MobileNavigation({ activeSection }) {
       </Dialog.Trigger>
       <Dialog.Portal>
         {/* CSS scroll locking preserves the modal focus trap without injected styles. */}
-        <Dialog.Overlay className="mobile-nav-overlay" />
+        {open && <div className="mobile-nav-overlay" aria-hidden="true" />}
         <Dialog.Content className="mobile-nav-panel" onCloseAutoFocus={event => {
           if (!destination.current) return;
           const target = document.querySelector(destination.current);
@@ -71,18 +71,17 @@ function MobileNavigation({ activeSection }) {
 }
 
 function ProjectCard({ project, eager = false }) {
-  const sourceLink = project.links?.[0];
   return (
     <article className="project-card" aria-labelledby={`card-${project.id}`}>
       <div className="project-card__intro">
         <div className="project-meta"><span>{project.number} / {project.kind}</span><span className="status">{project.status}</span></div>
         <h3 id={`card-${project.id}`}>{project.title}</h3>
         <p>{project.summary}</p>
-        <dl className="project-proof"><div><dt>Role</dt><dd>{project.role}</dd></div><div><dt>Scope</dt><dd>{project.scope}</dd></div><div><dt>{project.proofLabel || 'Verified contribution'}</dt><dd>{project.verifiedContribution}</dd></div></dl>
+        <p className="contribution"><strong>My contribution</strong>{project.cardContribution}</p>
       </div>
       <ProjectMedia project={project} eager={eager} />
       <div className="project-card__footer">
-        <div className="project-actions"><a className="text-link" href={`#${project.id}`}>Read case study<span className="sr-only"> for {project.title}</span><Arrow /></a>{sourceLink && <TextLink href={sourceLink.url}>{sourceLink.label}</TextLink>}</div>
+        <div className="project-actions"><a className="text-link" href={`#${project.id}`}>Read case study<span className="sr-only"> for {project.title}</span><Arrow /></a></div>
         <ul className="tags" aria-label={`Technologies and topics for ${project.title}`}>{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
       </div>
     </article>
