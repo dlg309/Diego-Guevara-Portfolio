@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Arrow, TextLink, ProjectMedia, assetHref } from './ProjectMedia';
@@ -41,7 +41,7 @@ function MobileNavigation({ activeSection }) {
       </Dialog.Trigger>
       <Dialog.Portal>
         {/* CSS scroll locking preserves the modal focus trap without injected styles. */}
-        <div className="mobile-nav-overlay" aria-hidden="true" />
+        <Dialog.Overlay className="mobile-nav-overlay" />
         <Dialog.Content className="mobile-nav-panel" onCloseAutoFocus={event => {
           if (!destination.current) return;
           const target = document.querySelector(destination.current);
@@ -89,26 +89,6 @@ function ProjectCard({ project, eager = false }) {
   );
 }
 
-// Radix measures on disclosure changes. Lazy content and gallery expansion can
-// change the natural height later, so observe the inner wrapper, not the panel
-// whose height is being animated (which would cause a measurement feedback loop).
-function MeasuredCaseContent({ children }) {
-  const ref = useRef(null);
-  useLayoutEffect(() => {
-    const content = ref.current;
-    const panel = content.parentElement;
-    const measure = () => panel.style.setProperty('--case-content-height', `${content.getBoundingClientRect().height}px`);
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(content);
-    return () => {
-      observer.disconnect();
-      panel.style.removeProperty('--case-content-height');
-    };
-  }, []);
-  return <div className="case-measure" ref={ref}>{children}</div>;
-}
-
 function CaseStudy({ project }) {
   return (
     <Accordion.Item asChild className="case-study" value={project.id}>
@@ -122,7 +102,7 @@ function CaseStudy({ project }) {
           </Accordion.Trigger>
         </Accordion.Header>
         <Accordion.Content className="case-panel">
-          <MeasuredCaseContent><Suspense fallback={<p role="status">Loading case study…</p>}><CaseDetails project={project} /></Suspense></MeasuredCaseContent>
+          <Suspense fallback={<p role="status">Loading case study…</p>}><CaseDetails project={project} /></Suspense>
         </Accordion.Content>
       </article>
     </Accordion.Item>
