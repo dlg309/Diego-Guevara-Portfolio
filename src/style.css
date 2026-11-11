@@ -77,8 +77,8 @@ section[id], [id="case-studies"], #approach, .case-study { scroll-margin-top: ca
 .mobile-nav-overlay { position: fixed; z-index: 39; inset: 0; background: #000a; animation: nav-overlay-in 240ms ease-out both; }
 body.navigation-open { overflow: hidden; }
 .mobile-nav-overlay[data-state="closed"] { animation: nav-overlay-out 200ms ease-in both; }
-.mobile-nav-panel { position: fixed; z-index: 40; inset: 0 0 0 auto; display: flex; width: min(24rem, 90vw); flex-direction: column; overflow-y: auto; overscroll-behavior: contain; padding: var(--space-6); border-left: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); animation: nav-panel-in 340ms var(--ease-out) both; }
-.mobile-nav-panel[data-state="closed"] { animation: nav-panel-out 200ms cubic-bezier(.4, 0, 1, 1) both; }
+.mobile-nav-panel { position: fixed; z-index: 40; inset: 0 0 0 auto; display: flex; width: min(24rem, 90vw); flex-direction: column; overflow-y: auto; overscroll-behavior: contain; padding: var(--space-6); border-left: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); animation: nav-panel-in 280ms var(--ease-out) both; }
+.mobile-nav-panel[data-state="closed"] { animation: nav-panel-out 180ms cubic-bezier(.4, 0, 1, 1) both; }
 .mobile-nav-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
 .mobile-nav-heading h2 { font-size: 1.25rem; }
 .menu-close { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid var(--line); border-radius: var(--radius-small); background: transparent; color: var(--text); cursor: pointer; }
@@ -93,8 +93,8 @@ body.navigation-open { overflow: hidden; }
 .mobile-nav-link[aria-current="location"] > span { color: var(--text); }
 @keyframes nav-overlay-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes nav-overlay-out { from { opacity: 1; } to { opacity: 0; } }
-@keyframes nav-panel-in { from { opacity: 0; transform: translateX(1.25rem) scale(.985); } to { opacity: 1; transform: translateX(0) scale(1); } }
-@keyframes nav-panel-out { from { opacity: 1; transform: translateX(0) scale(1); } to { opacity: 0; transform: translateX(1rem) scale(.99); } }
+@keyframes nav-panel-in { from { opacity: 0; transform: translateX(.75rem); } to { opacity: 1; transform: translateX(0); } }
+@keyframes nav-panel-out { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(.625rem); } }
 @keyframes nav-indicator-in { from { transform: scaleX(.35); opacity: .4; } to { transform: scaleX(1); opacity: 1; } }
 .hero { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: var(--space-16); padding-block: var(--space-16); }
 .hero-copy { max-width: 68ch; }
