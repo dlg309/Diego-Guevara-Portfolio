@@ -1,0 +1,4 @@
+[
+  { "name": "All JavaScript chunks", "path": "dist/assets/*.js", "limit": "100 kB", "gzip": true, "brotli": false },
+  { "name": "Styles", "path": "dist/assets/*.css", "limit": "6 kB", "gzip": true, "brotli": false }
+]

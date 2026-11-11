@@ -1,6 +1,6 @@
 # Diego Guevara — portfolio
 
-A portfolio for IS218 and future opportunities, built with React, HTML, CSS, and Vite. The matte black and navy design presents project cards and detailed case studies. Content is stored separately from the React components so it can be updated without redesigning the page. The site does not require a database, API keys, or analytics.
+A portfolio for IS218 and future opportunities, built with React, HTML, CSS, and Vite. The matte dark design presents project cards and expandable case studies. Content is stored separately from the React components so it can be updated without redesigning the page. The site does not require a database, API keys, or analytics.
 
 ## Run it
 
@@ -21,10 +21,10 @@ Preview the built site locally with `npm run preview`, then open the address pri
 
 ## Update content
 
-- `src/content/site.json`: name, two-line headline (`headline` and `headlineEmphasis`), introduction, interests, skills, experience, profile URLs, contact email, and résumé path. Add confirmed experience entries to the `experience` array using `title`, `organization`, optional `dates`, and `summary`.
-- `src/content/projects.json`: featured order (array order), project labels, status, tags, `cardContribution`, case-study sections, visuals, and links. Add or remove sections as evidence becomes available. Keep `id` unique, short, and URL-safe; `number` is a display label. Use real links and describe your own contribution accurately. A section can include its own `links` array for evidence beside a claim.
-- `src/App.jsx`: React components, page structure, and some section headings and explanatory sentences. The group-project placeholder is here until the actual course project is confirmed.
-- `src/style.css`: colors and fonts are CSS variables near the top; layout and responsive rules follow.
+- `src/content/site.json`: name, two-line headline (`headline` and `headlineEmphasis`), introduction, professional focus, interests, skills, experience, profile URLs, contact email, résumé path, `activeStack`, and `projectOrder`. The `projectOrder` array controls the visible order of both cards and case studies. Add confirmed experience entries to the `experience` array using `title`, `organization`, optional `dates`, and `summary`.
+- `src/content/projects.json`: project labels, status, tags, `role`, `scope`, `verifiedContribution`, optional `proofLabel`, case-study sections, visuals, and links. Add or remove sections as evidence becomes available. Keep `id` unique, short, and URL-safe; display numbers are derived from `projectOrder` in `site.json`. Use real links and describe your own contribution accurately. A section can include its own `links` array for evidence beside a claim.
+- `src/App.jsx`: React components, page structure, and some section headings and explanatory sentences. The unresolved course-project status is documented in `docs/PORTFOLIO_RECORD.md` and is not shown on the recruiter-facing homepage.
+- `src/style.css`: colors, font roles, 4px spacing scale, content widths, radii, motion, and shadows are CSS variables in `:root`; component and responsive rules follow. The single system-sans stack uses installed platform fonts; no font files or font services are loaded.
 - `docs/PORTFOLIO_RECORD.md`: concise public course record and review follow-up.
 - `docs/USER_RESEARCH.md`: a ready-to-use, pending plan for real-user testing.
 
@@ -34,7 +34,7 @@ JSON needs double quotes, commas between entries, and no trailing comma. For exa
 {"title":"Example role","organization":"Example organization","dates":"2025–2026","summary":"Replace with a verified contribution."}
 ```
 
-To add a project, copy an existing object in `projects.json`, change its unique `id`, `number`, text, sections, tags, and verified links. Remove unverified sections and links; an empty `links` array is fine. Rebuild and check the card and case study. For a group case, explain what you did, what teammates did, and what remains planned. Replace the group placeholder in `src/App.jsx` when the required customer project is known.
+To add a project, copy an existing object in `projects.json`, change its unique `id`, text, sections, tags, and verified links, then add its ID to `projectOrder` in `site.json`. Remove unverified sections and links; an empty `links` array is fine. Rebuild and check the card and case study. Case-study links open their matching accordion, including direct `#project-id` URLs. Radix provides the accordion and modal navigation behavior; CSS handles background scroll locking so the production CSP can remain strict. Project cards render immediately without an animation runtime. Case-study detail code loads on first expansion. For a group case, explain what you did, what teammates did, and what remains planned. Replace the group placeholder in `src/App.jsx` when the required customer project is known.
 
 ## Résumé, contact, and images
 
@@ -46,7 +46,11 @@ Add a real project screenshot to `public/` and add an image object to the releva
 "image": {"src":"./assets/example-screen.png", "alt":"Description of what the screenshot shows", "caption":"Screenshot of the actual project", "fullSize":true}
 ```
 
-Set `fullSize` to `true` to provide a link to the original image, or omit it for diagrams. `public/visuals/` contains user-provided ALPFA app screenshots, a labeled ZipHeatMap workflow diagram, and locally captured project screenshots. Tempo shows its local interface with fictional sample data and a mocked backend. RPS and Echo Mountain show real local game sessions; the RPS capture uses a local emoji font to render the existing hand icons. Each project’s `image` controls its main visual; its optional `gallery` array controls additional screenshots, captions, and full-size links. ALPFA uses `galleryLayout: "phone"` for its portrait app screens. Its `galleryPreviewCaption` controls the card caption. Replace any of them by updating its project’s `image` object and keeping the alt text and caption accurate. Use descriptive alt text for meaningful images, never invent a screenshot, and only include files you have permission to publish. Vite copies `public/` to the root of `dist/`; the React asset helper maps the existing `./assets/` content paths to those public files. Do not put private documents in `public/`.
+Set `fullSize` to `true` to provide a link to the original image, or omit it for diagrams. `public/visuals/` contains user-provided ALPFA app screenshots, a labeled ZipHeatMap workflow diagram, and locally captured project screenshots. Tempo shows its local interface with fictional sample data and a mocked backend. RPS shows a real local game session. Echo Mountain shows the browser game’s downhill, trick-run, halfpipe, and mobile interfaces; the RPS capture uses a local emoji font to render the existing hand icons. Each project’s `image` controls its main visual; its optional `gallery` array controls additional screenshots, captions, and full-size links. ALPFA uses `galleryLayout: "phone"` for its portrait app screens. `cardCaption` controls the card caption. Use `previewFit: "top"` only for a deliberately labeled dashboard detail; the full image remains available in the case study. Image `width` and `height` reserve layout space and should match the source asset. Replace any of them by updating its project’s `image` object and keeping the alt text and caption accurate. Use descriptive alt text for meaningful images, never invent a screenshot, and only include files you have permission to publish. Vite copies `public/` to the root of `dist/`; the React asset helper maps the existing `./assets/` content paths to those public files. Do not put private documents in `public/`.
+
+## Local design review
+
+The latest two-direction comparison, baseline and revised screenshots, browser-check output, and an unfilled peer-review record are kept in ignored `private/design-review/`. They are local review artifacts, not user-study findings or deployment assets. The selected direction uses a compact sans hierarchy, restrained surfaces, direct evidence links, and expandable case studies. The serif comparison is an alternative, not a tested user preference.
 
 ## Course record and privacy
 
@@ -70,7 +74,7 @@ npm run build
 
 The production build includes a restrictive Content Security Policy meta tag. Response headers in `public/_headers` support static hosting on Netlify and Cloudflare Pages; `vercel.json` supplies corresponding headers on Vercel. These include framing protection, MIME sniffing protection, a referrer policy, and restrictions on camera, microphone, and location. Other hosts must be configured to send equivalent HTTP headers; meta tags alone cannot provide all of them. Once hosting is chosen, verify HTTPS and the actual response headers on the deployed site. The policy may need deliberate updates if external fonts, analytics, APIs, or other services are added.
 
-The GitHub Actions workflow runs the checks, tests, dependency audit, and build with read-only repository permissions. Dependabot configuration requests weekly dependency and action updates when enabled for the GitHub repository. These safeguards run on GitHub only after their configuration is committed and pushed. `scripts/build.mjs` is the older generator and is no longer the active build; use the npm commands above.
+The GitHub Actions workflow runs the checks, tests, dependency audit, and build with read-only repository permissions. Dependabot configuration requests weekly dependency and action updates when enabled for the GitHub repository. These safeguards run on GitHub only after their configuration is committed and pushed.
 
 ## GitHub Pages deployment
 
@@ -87,3 +91,8 @@ The `Deploy portfolio to GitHub Pages` workflow checks and builds the site, then
 - Update Tempo’s version and checks as the rebuild changes. The local Next.js rebuild is ahead of its published branch, while the default branch contains the earlier version; add a demo only when available.
 - Review the RPS description and its linked evidence, then add more projects or screenshots you are comfortable sharing.
 - Complete private career comparisons and a real peer review/revision/retest. Course pages could not be read during this build; check Canvas and course links for the latest instructions.
+
+
+## Code and asset maintenance
+
+Run `npm run deadcode`, `npm run assets:check`, then `npm run build && npm run size` before submitting changes. `npm run metrics` prints raw/gzip chunk sizes. GitHub's debloat workflow repeats these checks and compares PR builds with their base; CodeQL runs security and quality scans. See [the audit report](docs/DEBLOAT_AUDIT.md) for measurements, scope, exceptions, and the dry-run GitHub maintenance script. Nothing is published until committed and pushed.

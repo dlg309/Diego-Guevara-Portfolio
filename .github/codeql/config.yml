@@ -1,0 +1,8 @@
+name: Portfolio security and quality
+paths:
+  - src
+  - scripts
+  - tests
+  - vite.config.js
+queries:
+  - uses: security-and-quality
