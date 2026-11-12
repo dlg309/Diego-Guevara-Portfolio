@@ -140,12 +140,12 @@
         "text": "The application matches ZIP codes against a reference spreadsheet, flags invalid or unmatched entries, and summarizes results by state. Staff can filter locations, view ZIP-code frequency on a heat map, and export a map image or plotted data for presentations."
       },
       {
-        "title": "Checks & limitations",
-        "text": "The maps made the geographic pattern easier to see and present to department leadership. The packaged Windows app and its application instructions were not available to rerun or verify during this review. I have no measured time-savings figure or documented leadership decision to report."
+        "title": "Evidence and checks",
+        "text": "The maps made the geographic pattern easier to see and present to department leadership. The packaged Windows app and its application instructions were not available for a fresh verification during this review."
       },
       {
-        "title": "Privacy",
-        "text": "The portfolio describes the workflow without publishing donor records, input spreadsheets, or maps based on donor data."
+        "title": "Status, limitations, and privacy",
+        "text": "The app was packaged for Windows, but it was not available to rerun during this review. I have no measured time-savings figure or documented leadership decision to report. The portfolio describes the workflow without publishing donor records, input spreadsheets, or maps based on donor data."
       }
     ],
     "links": [],
@@ -280,8 +280,8 @@
         "text": "Explore the feel of a snowboard run through movement, jumps, and tricks in a browser, using a keyboard or touch controls."
       },
       {
-        "title": "Project context",
-        "text": "The public repository lists my account as its sole contributor. Its history includes the initial prototype and later feature and test commits. The records do not state whether I used development assistance, so I am not making a claim about that."
+        "title": "My contribution and project context",
+        "text": "I added the initial prototype and iterated on game modes, controls, and tests. The public repository lists my account as its sole contributor. Its history includes the initial prototype and later feature and test commits. The records do not state whether I used development assistance, so I am not making a claim about that."
       },
       {
         "title": "What was built",

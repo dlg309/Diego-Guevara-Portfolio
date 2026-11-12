@@ -5,6 +5,7 @@
   "intro": "I study business and information systems at NJIT and build software for useful work.",
   "availability": "Exploring internships in business and technology.",
   "about": "I’m drawn to the space between a problem and the people experiencing it. I want to understand how work gets done, ask better questions, and build solutions that are clear and useful.",
+  "aboutDetail": "At NJIT, I study business and information systems while supporting University Advancement operations. That work led me to build ZipHeatMap for a department need. I also contribute to chapter technology work through ALPFA NJIT and explore practical software, data, and product roles.",
   "interests": [
     "Software & practical problem-solving",
     "Data & business operations",
@@ -30,31 +31,18 @@
       "summary": "I prepared voting equipment, verified voter records, trained staff on procedures, and escalated operational issues through established channels."
     }
   ],
-  "skills": [
-    {
-      "label": "Programming",
-      "text": "Python, HTML, CSS, and JavaScript through coursework and project work."
-    },
-    {
-      "label": "Working practices",
-      "text": "Git, GitHub, specifications, automated tests, and reviewing changes."
-    },
-    {
-      "label": "Exploring",
-      "text": "How software, data, and AI tools can support useful business workflows."
-    }
+  "skillGroups": [
+    { "label": "Frontend", "items": ["HTML & CSS", "JavaScript", "React", "Next.js"] },
+    { "label": "Backend and data", "items": ["Python", "Flask", "FastAPI", "PostgreSQL", "MATLAB"] },
+    { "label": "Mobile", "items": ["React Native", "Expo", "TypeScript"] },
+    { "label": "Testing and accessibility", "items": ["Automated tests", "API checks", "Keyboard review", "Contrast checks"] },
+    { "label": "Deployment and tooling", "items": ["Git & GitHub", "Vite", "Linux", "GitHub Pages"] }
   ],
-  "activeStack": [
-    "React Native",
-    "Expo",
-    "TypeScript",
-    "MATLAB",
-    "Next.js",
-    "PostgreSQL",
-    "Python",
-    "Flask",
-    "JavaScript",
-    "Automated testing"
+  "credentialsAndInvolvement": [
+    { "title": "AWS Certified Cloud Practitioner", "organization": "Amazon Web Services", "status": "Certified", "description": "Foundational cloud credential." },
+    { "title": "Microsoft Azure Fundamentals", "organization": "Microsoft", "status": "Certified", "description": "Foundational Azure credential." },
+    { "title": "ALPFA NJIT", "organization": "NJIT chapter", "status": "Jan 2026 – Present", "description": "IT Committee member and intramural team captain; contributor to chapter app work.", "url": "https://github.com/AnabhayanA/alpfa-njit-app", "linkLabel": "Partner’s app repository" },
+    { "title": "NJIT Legacy Leaders", "organization": "New Jersey Institute of Technology", "status": "Member", "description": "Volunteered at Student-Alumni Service Day in support of the Newark community." }
   ],
   "projectOrder": [
     "alpfa",
