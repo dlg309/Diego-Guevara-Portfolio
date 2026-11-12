@@ -90,7 +90,7 @@ function ProjectCard({ project, eager = false }) {
       </div>
       <ProjectMedia project={project} eager={eager} />
       <div className="project-card__footer">
-        <div className="project-actions"><a className="text-link" href={`#${project.id}`}>Read case study<span className="sr-only"> for {project.title}</span><Arrow /></a></div>
+        <div className="project-actions"><a className="text-link" href={`#${project.id}`}>Read case study<span className="sr-only"> for {project.title}</span><Arrow /></a>{project.demoUrl && <TextLink href={project.demoUrl}>Play {project.title}</TextLink>}</div>
         <ul className="tags" aria-label={`Technologies and topics for ${project.title}`}>{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
       </div>
     </article>
