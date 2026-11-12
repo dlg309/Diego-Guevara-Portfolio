@@ -11,6 +11,7 @@ test('homepage assets, project navigation, and accessibility', async ({ page, re
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Practical software.');
   await expect(page.locator('.project-card')).toHaveCount(site.projectOrder.length);
+  await expect(page.locator('.project-card').filter({ hasText: 'Echo Mountain' }).getByRole('link', { name: 'Play Echo Mountain' })).toHaveAttribute('href', 'https://dlg309.github.io/Echo-Mountain/');
   for (const image of await page.locator('.project-card img').all()) {
     await image.scrollIntoViewIfNeeded();
     await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);

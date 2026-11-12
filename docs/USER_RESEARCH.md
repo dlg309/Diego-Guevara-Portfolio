@@ -23,7 +23,7 @@ After the five-second questions, let the participant view the page. Ask: “What
 
 ## Task-based usability
 
-For the redesigned site, start with this combined peer-review task: “Find my individual project, explain what I contributed to the group project, then locate my code, résumé, and professional profiles.” Record the actual observation, issue, change, and retest; a blank local record is available in `private/design-review/PEER_REVIEW.md`.
+For the redesigned site, start with this combined peer-review task: “Find one of my individual projects, explain what I contributed to the collaborative ALPFA app and who owns its repository, then locate my code, résumé, and professional profiles.” Record the actual observation, issue, change, and retest; a blank local record is available in `private/design-review/PEER_REVIEW.md`.
 
 Start each task at the homepage. Read each prompt neutrally, allow the participant to use their own path, and ask them to say when they think they are done. Observe hesitation, missed links, and their actual words. Count clicks or taps where useful, but do not treat a small number of participants as a representative conversion rate.
 

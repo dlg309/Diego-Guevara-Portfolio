@@ -44,7 +44,7 @@
       },
       {
         "title": "Status & limitations",
-        "text": "The project documentation says core features are implemented, with final visual polish, cross-device QA, and production builds still ahead. The separately deployed backend is not included in the repository; I did not retest its integrations for this portfolio."
+        "text": "The project documentation says core features are implemented, with final visual polish, cross-device QA, and production builds still ahead. The repository includes a legacy upload backend, but not the source for the production Cloudflare Worker. I did not retest the production integration for this portfolio."
       }
     ],
     "links": [
@@ -194,13 +194,13 @@
         "links": [
           {
             "label": "Read rebuild verification and open limits",
-            "url": "https://github.com/dlg309/Tempo-AI-Assistant/blob/revamp/tempo-next/docs/PROGRESS.md"
+            "url": "https://github.com/dlg309/Tempo-AI-Assistant/blob/44377e92b0eeefce607d8ce2a76adc93b22e7dde/docs/PROGRESS.md"
           }
         ]
       },
       {
         "title": "Version & limitations",
-        "text": "The Next.js rebuild is published on the revamp/tempo-next branch, which GitHub showed three commits ahead of its upstream main when reviewed. The project README says it has no production deployment. The repository’s default main branch remains the earlier React/Vite and FastAPI version; the screenshot’s exact commit is not recorded.",
+        "text": "The Next.js rebuild is published on the revamp/tempo-next branch (reviewed November 12, 2026, at commit 44377e9). The project README says it has no production deployment. The repository’s default main branch remains the earlier React/Vite and FastAPI version; the screenshot’s exact commit is not recorded.",
         "links": [
           {
             "label": "View published rebuild branch",
@@ -289,7 +289,7 @@
         "links": [
           {
             "label": "Read browser controls and features",
-            "url": "https://github.com/dlg309/Echo-Mountain/blob/main/echo-mountain/README.md"
+            "url": "https://github.com/dlg309/Echo-Mountain/blob/b8620a96d94934d569c2675f87c6f2e67e6effef/README.md"
           },
           {
             "label": "See the initial prototype commit",
@@ -303,25 +303,30 @@
       },
       {
         "title": "Checks & screenshot evidence",
-        "text": "The Node test suite was run locally for this portfolio review and 57 tests passed; the result is recorded in the local review log, not a public CI run. The public README documents how to run the suite, and the test files are linked here.",
+        "text": "The current main branch’s Node test suite was run locally on November 12, 2026: 57 tests passed. The live GitHub Pages demo opened on desktop and mobile, a downhill run started, and neither browser session reported a page error. These checks do not replace broader gameplay or device testing.",
         "links": [
           {
             "label": "Inspect the public test suite",
-            "url": "https://github.com/dlg309/Echo-Mountain/tree/main/echo-mountain/tests"
+            "url": "https://github.com/dlg309/Echo-Mountain/tree/b8620a96d94934d569c2675f87c6f2e67e6effef/tests"
           }
         ]
       },
       {
         "title": "Limitations & next steps",
-        "text": "The game remains a prototype. Automated checks and local screenshots do not establish performance across all devices or a complete manual gameplay review. The repository’s GitHub Pages URL returned 404 during this review, so the portfolio links to source rather than a playable deployment."
+        "text": "The game remains a prototype. Automated checks and a short live demo run do not establish performance across all devices or a complete manual gameplay review."
       }
     ],
     "links": [
+      {
+        "label": "Play Echo Mountain",
+        "url": "https://dlg309.github.io/Echo-Mountain/"
+      },
       {
         "label": "View browser repository",
         "url": "https://github.com/dlg309/Echo-Mountain"
       }
     ],
+    "demoUrl": "https://dlg309.github.io/Echo-Mountain/",
     "image": {
       "src": "./assets/visuals/echo-browser-downhill.png",
       "alt": "Echo Mountain browser game with the side settings panel, a downhill course, a snowboarder, obstacles, and live statistics.",

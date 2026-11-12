@@ -63,6 +63,7 @@ for (const project of projects) {
   check(typeof project.role === 'string' && project.role.trim().length > 0, `${name} needs a documented role or an explicit role limitation`);
   check(typeof project.scope === 'string' && project.scope.trim().length > 0, `${name} needs a scope or timeline note`);
   check(typeof project.verifiedContribution === 'string' && project.verifiedContribution.trim().length > 0, `${name} needs a verified contribution or evidence limitation`);
+  if (project.demoUrl) checkExternalUrl(project.demoUrl, `${name} demo`);
   if (project.image) checkImage(project.image, name);
   for (const image of project.gallery || []) checkImage(image, `${name} gallery`);
   for (const link of [...(project.links || []), ...(project.sections || []).flatMap((section) => section.links || [])]) {
