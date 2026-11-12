@@ -118,8 +118,12 @@ test('keyboard navigation, compact header, and mobile focus return', async ({ pa
   await page.goto('./');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+  await page.locator('.brand').focus();
   await page.evaluate(() => window.scrollTo({ top: 500, behavior: 'instant' }));
   await expect(page.locator('.site-header')).toHaveClass(/site-header--scrolled/);
+  await page.locator('.menu-toggle').evaluate(async menu => {
+    await Promise.all(menu.getAnimations().map(animation => animation.finished.catch(() => undefined)));
+  });
   if (testInfo.project.name === 'desktop') {
     const resume = await page.locator('.header-resume').boundingBox();
     const menu = await page.getByRole('button', { name: 'Open navigation menu' }).boundingBox();

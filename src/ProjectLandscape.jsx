@@ -76,10 +76,10 @@ export default function ProjectLandscape({ projects }) {
       {landmarks.map(landmark => {
         const project = projects.find(item => item.id === landmark.id);
         if (!project) return null;
-        return <a className="landscape-project" href={`#${project.id}`} key={project.id} aria-label={`Read case study for ${project.title}`}>
+        return <a className="landscape-project" href={`#${project.id}`} key={project.id} aria-label={project.id === 'rps' ? undefined : `Read case study for ${project.title}`}>
           <g transform={`translate(${landmark.x} ${landmark.y})`}>
             <rect className="landscape-hit" x="-108" y={project.id === 'rps' ? -15 : -95} width="216" height={project.id === 'rps' ? 115 : 195} rx="10" />
-            <g className="landscape-landmark">
+            <g className="landscape-landmark" aria-hidden="true">
               <g transform="scale(.85)">
               <path d="M-74 26L0-15L74 26V36L0 78L-74 36Z" fill="#101b2d" stroke="#344966" />
               <path className="landscape-platform" d="M-74 26L0-15L74 26L0 68Z" fill="#17263d" stroke="#59718f" />

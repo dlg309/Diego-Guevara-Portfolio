@@ -8,8 +8,7 @@
     "src/**/*.{js,jsx}",
     "scripts/*.mjs",
     "tests/*.test.mjs",
-    "tests/browser/*.spec.mjs",
-    "playwright.config.js"
+    "tests/browser/*.spec.mjs"
   ],
   "ignoreBinaries": [
     "jq"
