@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci
+      - name: Ensure maintenance test tooling is present
+        run: jq --version
       - run: npm run check
       - run: npm test
       - run: npm run deadcode

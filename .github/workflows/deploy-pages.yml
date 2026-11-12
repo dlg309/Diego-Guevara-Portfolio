@@ -28,7 +28,9 @@ jobs:
       - name: Check content and assets
         run: npm run check
       - name: Run tests
-        run: npm test
+        run: |
+          jq --version
+          npm test
       - name: Check dead code and public asset references
         run: |
           npm run deadcode

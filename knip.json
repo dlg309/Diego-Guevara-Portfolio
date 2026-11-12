@@ -1,12 +1,15 @@
 {
   "$schema": "https://unpkg.com/knip/schema.json",
   "entry": [
-    "tests/*.test.mjs"
+    "tests/*.test.mjs",
+    "tests/browser/*.spec.mjs"
   ],
   "project": [
     "src/**/*.{js,jsx}",
     "scripts/*.mjs",
-    "tests/*.test.mjs"
+    "tests/*.test.mjs",
+    "tests/browser/*.spec.mjs",
+    "playwright.config.js"
   ],
   "ignoreBinaries": [
     "jq"

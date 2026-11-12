@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Arrow, TextLink, assetHref } from './ProjectMedia';
 
-export default function ContactActions({ email, resume, linkedin, github }) {
+export default function ContactActions({ email, resume, resumeDetailed, linkedin, github }) {
   const [message, setMessage] = useState('');
 
   async function copyEmail() {
@@ -22,7 +22,7 @@ export default function ContactActions({ email, resume, linkedin, github }) {
       </div>
       <p className="contact-actions__status" role="status" aria-live="polite">{message}</p>
       <a className="email-link" href={`mailto:${email}`}>{email}</a>
-      <div className="contact-links"><TextLink href={linkedin}>LinkedIn</TextLink><TextLink href={github}>GitHub</TextLink></div>
+      <div className="contact-links"><TextLink href={linkedin}>LinkedIn</TextLink><TextLink href={github}>GitHub</TextLink><TextLink href={resumeDetailed}>Detailed résumé</TextLink></div>
     </div>
   );
 }

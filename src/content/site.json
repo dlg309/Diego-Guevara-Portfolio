@@ -16,7 +16,8 @@
   "portfolioRepo": "https://github.com/dlg309/Diego-Guevara-Portfolio",
   "linkedin": "https://www.linkedin.com/in/diegoguevara2093",
   "email": "diego.guevara107@gmail.com",
-  "resume": "./assets/Diego_Guevara_Resume.pdf",
+  "resume": "./assets/Diego_Guevara_Resume_One_Page.pdf",
+  "resumeDetailed": "./assets/Diego_Guevara_Resume.pdf",
   "experience": [
     {
       "title": "Department Assistant",

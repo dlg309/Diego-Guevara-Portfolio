@@ -47,6 +47,7 @@ function checkImage(image, description) {
 for (const key of ['github', 'portfolioRepo', 'linkedin']) checkExternalUrl(site[key], `site.${key}`);
 check(typeof site.email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(site.email), 'site.email must be a valid email address');
 checkAsset(site.resume, 'site.resume');
+checkAsset(site.resumeDetailed, 'site.resumeDetailed');
 check(Array.isArray(site.skillGroups) && site.skillGroups.length === 5 && site.skillGroups.every(group => group.label && group.items?.length), 'site.skillGroups must contain five populated groups');
 check(Array.isArray(site.credentialsAndInvolvement) && site.credentialsAndInvolvement.length > 0, 'site.credentialsAndInvolvement must be populated');
 for (const item of site.credentialsAndInvolvement || []) if (item.url) checkExternalUrl(item.url, `${item.title} link`);

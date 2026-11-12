@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Arrow, TextLink, ProjectMedia, assetHref } from './ProjectMedia';
@@ -6,7 +6,13 @@ import ContactActions from './ContactActions';
 import site from './content/site.json';
 import projects from './content/projects.json';
 
-const CaseDetails = lazy(() => import('./CaseDetails'));
+let loadedCaseDetails;
+let caseDetailsRequest;
+const loadCaseDetails = () => caseDetailsRequest ??= import('./CaseDetails').then(module => {
+  loadedCaseDetails = module.default;
+  return module;
+});
+const CaseDetails = lazy(loadCaseDetails);
 const ProjectLandscape = lazy(() => import('./ProjectLandscape'));
 
 const navigationItems = [
@@ -91,20 +97,72 @@ function ProjectCard({ project, eager = false }) {
   );
 }
 
+function MeasuredCaseBody({ project }) {
+  const content = useRef(null);
+  // Keep the chosen component type stable when the sticky header rerenders.
+  const [Details] = useState(() => loadedCaseDetails ?? CaseDetails);
+  useLayoutEffect(() => {
+    const body = content.current;
+    const panel = body.parentElement;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let previousHeight;
+    let resizeAnimation;
+    const measure = () => {
+      const height = body.getBoundingClientRect().height;
+      if (height === previousHeight) return;
+      const fromHeight = panel.getBoundingClientRect().height;
+      panel.style.setProperty('--case-content-height', `${height}px`);
+      // Suspense and expanded galleries can change the natural height after
+      // Radix has measured it. Retarget from the currently visible height.
+      if (previousHeight !== undefined && panel.dataset.state === 'open') {
+        resizeAnimation?.cancel();
+        resizeAnimation = panel.animate(
+          [{ height: `${fromHeight}px` }, { height: `${height}px` }],
+          { duration: motion.matches ? 300 : 480, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' },
+        );
+      }
+      previousHeight = height;
+    };
+    const stopResizing = event => {
+      if (event.target === panel && event.animationName === 'case-study-close') resizeAnimation?.cancel();
+    };
+    const onMotionChange = () => { if (motion.matches) resizeAnimation?.cancel(); };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(body);
+    panel.addEventListener('animationstart', stopResizing);
+    motion.addEventListener('change', onMotionChange);
+    return () => {
+      observer.disconnect();
+      resizeAnimation?.cancel();
+      panel.removeEventListener('animationstart', stopResizing);
+      motion.removeEventListener('change', onMotionChange);
+      panel.style.removeProperty('--case-content-height');
+      panel.style.removeProperty('--case-closing-height');
+    };
+  }, []);
+  return <div className="case-measure" ref={content}><Suspense fallback={<p role="status">Loading case study…</p>}><Details project={project} /></Suspense></div>;
+}
+
 function CaseStudy({ project }) {
+  const panel = useRef(null);
   return (
     <Accordion.Item asChild className="case-study" value={project.id}>
       <article id={project.id}>
         <Accordion.Header className="case-heading">
-          <Accordion.Trigger className="case-trigger">
+          <Accordion.Trigger className="case-trigger" onClick={() => {
+            if (panel.current?.dataset.state === 'open') {
+              panel.current.style.setProperty('--case-closing-height', `${panel.current.getBoundingClientRect().height}px`);
+            }
+          }}>
             <span className="case-number" aria-hidden="true">{project.number}</span>
             <span className="case-summary-title"><span className="case-kind">{project.kind}</span><span className="case-title">{project.title}</span></span>
             <span className="status">{project.status}</span>
             <span className="case-toggle" aria-hidden="true" />
           </Accordion.Trigger>
         </Accordion.Header>
-        <Accordion.Content className="case-panel">
-          <Suspense fallback={<p role="status">Loading case study…</p>}><CaseDetails project={project} /></Suspense>
+        <Accordion.Content className="case-panel" ref={panel}>
+          <MeasuredCaseBody project={project} />
         </Accordion.Content>
       </article>
     </Accordion.Item>
@@ -125,6 +183,16 @@ function CredentialsAndInvolvement({ items }) {
 
 function useCaseStudyAnchors() {
   useEffect(() => {
+    // Load the small details chunk before the visitor reaches the dropdowns,
+    // keeping the first disclosure from animating a loading placeholder.
+    const notes = document.getElementById('case-studies');
+    const preload = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        loadCaseDetails().catch(() => {});
+        preload.disconnect();
+      }
+    }, { rootMargin: '600px' });
+    if (notes) preload.observe(notes);
     const reveal = (hash, scroll = false) => {
       let id;
       try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
@@ -142,7 +210,7 @@ function useCaseStudyAnchors() {
     onHashChange();
     window.addEventListener('hashchange', onHashChange);
     document.addEventListener('click', onClick);
-    return () => { window.removeEventListener('hashchange', onHashChange); document.removeEventListener('click', onClick); };
+    return () => { preload.disconnect(); window.removeEventListener('hashchange', onHashChange); document.removeEventListener('click', onClick); };
   }, []);
 }
 
@@ -238,7 +306,7 @@ export default function App() {
         </section>
         <section className="section wrap" id="about" aria-labelledby="about-title"><SectionHeading number="02" label="BACKGROUND & APPROACH" title="A business lens. A builder’s curiosity." id="about-title" description="Understand the need, make the work tangible, and check the result." /><div className="background-grid"><div className="about-copy"><p className="lead">{site.about}</p><p>{site.aboutDetail}</p><h3 className="small-heading">What I’m exploring</h3><ul className="interest-list">{site.interests.map(interest => <li key={interest}>{interest}</li>)}</ul></div><div className="approach-content" id="approach"><h3>How I approach the work</h3><div className="principles"><div><span aria-hidden="true">01</span><h4>Understand the need</h4><p>Ask how the work gets done and where people encounter friction.</p></div><div><span aria-hidden="true">02</span><h4>Make it tangible</h4><p>Build something specific enough to try, discuss, and improve.</p></div><div><span aria-hidden="true">03</span><h4>Check the work</h4><p>Use tests, evidence, and honest limitations to guide the next step.</p></div></div></div></div><div className="skills-area"><h3>Skills used in projects and coursework</h3><SkillGroups groups={site.skillGroups} /></div></section>
         <section className="section wrap" id="experience" aria-labelledby="experience-title"><SectionHeading number="03" label="EXPERIENCE & INVOLVEMENT" title="Where I’ve put the work to use." id="experience-title" /><div className="experience">{site.experience.map(item => <article className="experience-entry" key={`${item.organization}-${item.title}`}><span className="experience-dates">{item.dates}</span><h3>{item.title}</h3><p className="experience-meta">{item.organization}</p><p>{item.summary}</p></article>)}</div><CredentialsAndInvolvement items={site.credentialsAndInvolvement} /></section>
-        <section className="contact wrap" id="contact" aria-labelledby="contact-title"><div><p className="eyebrow">04 / CONTACT</p><h2 id="contact-title">Let’s make<br />something useful.</h2></div><div className="contact-copy"><p>Have an opportunity or a project in mind? I’d welcome a conversation.</p><ContactActions email={site.email} resume={site.resume} linkedin={site.linkedin} github={site.github} /></div></section>
+        <section className="contact wrap" id="contact" aria-labelledby="contact-title"><div><p className="eyebrow">04 / CONTACT</p><h2 id="contact-title">Let’s make<br />something useful.</h2></div><div className="contact-copy"><p>Have an opportunity or a project in mind? I’d welcome a conversation.</p><ContactActions email={site.email} resume={site.resume} resumeDetailed={site.resumeDetailed} linkedin={site.linkedin} github={site.github} /></div></section>
 {/*  */}      </main>
       <footer className="wrap"><span>© {new Date().getFullYear()} {site.name}</span><a href="#top">Back to top ↑</a><TextLink href={site.portfolioRepo}>Portfolio source</TextLink></footer>
     </>
