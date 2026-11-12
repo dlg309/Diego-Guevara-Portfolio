@@ -23,11 +23,11 @@ test('homepage metadata uses the verified Pages URL and existing preview assets'
   assert.equal(metaContent('name', 'twitter:image'), metaContent('property', 'og:image'));
   assert.ok(metaContent('name', 'twitter:image:alt')?.trim());
   assert.equal(metaContent('property', 'og:image:alt')?.trim().length > 0, true);
-  assert.equal(metaContent('property', 'og:image'), `${pageUrl}visuals/echo-browser-downhill.png`);
+  assert.equal(metaContent('property', 'og:image'), `${pageUrl}visuals/portfolio-social.png`);
   assert.equal(metaContent('property', 'og:image:type'), 'image/png');
-  assert.equal(metaContent('property', 'og:image:width'), '1440');
-  assert.equal(metaContent('property', 'og:image:height'), '1000');
-  assert.ok(existsSync('public/visuals/echo-browser-downhill.png'));
-  assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\.\/visuals\/favicon\.svg"\s*\/>/);
+  assert.equal(metaContent('property', 'og:image:width'), '1200');
+  assert.equal(metaContent('property', 'og:image:height'), '630');
+  assert.ok(existsSync('public/visuals/portfolio-social.png'));
+  assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\.\/visuals\/favicon\.svg\?v=navy"\s*\/>/);
   assert.ok(existsSync('public/visuals/favicon.svg'));
 });
