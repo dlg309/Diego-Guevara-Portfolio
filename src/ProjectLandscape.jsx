@@ -1,3 +1,5 @@
+import { siteHref } from './ProjectMedia';
+
 const landmarks = [
   { id: 'alpfa', x: 155, y: 160, label: 'ALPFA NJIT App' },
   { id: 'zipheatmap', x: 445, y: 165, label: 'ZipHeatMap' },
@@ -76,7 +78,7 @@ export default function ProjectLandscape({ projects }) {
       {landmarks.map(landmark => {
         const project = projects.find(item => item.id === landmark.id);
         if (!project) return null;
-        return <a className="landscape-project" href={`#${project.id}`} key={project.id} aria-label={project.id === 'rps' ? undefined : `Read case study for ${project.title}`}>
+        return <a className="landscape-project" href={siteHref(`case-studies/#${project.id}`)} key={project.id} aria-label={project.id === 'rps' ? undefined : `Read case study for ${project.title}`}>
           <g transform={`translate(${landmark.x} ${landmark.y})`}>
             <rect className="landscape-hit" x="-108" y={project.id === 'rps' ? -15 : -95} width="216" height={project.id === 'rps' ? 115 : 195} rx="10" />
             <g className="landscape-landmark" aria-hidden="true">

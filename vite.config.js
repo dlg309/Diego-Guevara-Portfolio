@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
 
 const productionPolicy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'";
 
@@ -55,4 +56,9 @@ export default defineConfig({
     watch: { ignored: ['**/docs/Tempo/**', '**/docs/Tempo-AI-Assistant/**', '**/docs/RPS_218Game/**', '**/docs/echo-mountain/**', '**/docs/alpfa-njit-app/**'] },
   },
   preview: { host: '127.0.0.1' },
+  build: {
+    rolldownOptions: {
+      input: Object.fromEntries(['', 'work', 'case-studies', 'background', 'experience', 'contact'].map(page => [page || 'home', resolve(import.meta.dirname, page, 'index.html')])),
+    },
+  },
 });

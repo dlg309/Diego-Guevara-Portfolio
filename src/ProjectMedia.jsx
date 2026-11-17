@@ -1,5 +1,6 @@
-// Keep the editable content paths compatible with Vite and subdirectory hosting.
-export const assetHref = (href = '') => href.startsWith('./assets/') ? `./${href.slice('./assets/'.length)}` : href;
+// Resolve links from either the home page or a nested page on GitHub Pages.
+export const siteHref = (path = '') => `${document.documentElement.dataset.root || '.'}/${path.replace(/^\/+/, '')}`;
+export const assetHref = (href = '') => href.startsWith('./assets/') ? siteHref(href.slice('./assets/'.length)) : href;
 
 export function Arrow({ down = false }) {
   return <span aria-hidden="true" className="arrow">{down ? '↓' : '↗'}</span>;

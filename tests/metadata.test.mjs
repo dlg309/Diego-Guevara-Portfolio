@@ -31,3 +31,14 @@ test('homepage metadata uses the verified Pages URL and existing preview assets'
   assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\.\/visuals\/favicon\.svg\?v=navy"\s*\/>/);
   assert.ok(existsSync('public/visuals/favicon.svg'));
 });
+
+test('each portfolio page has its own metadata and a build entry', () => {
+  for (const page of ['work', 'case-studies', 'background', 'experience', 'contact']) {
+    const pageHtml = readFileSync(`${page}/index.html`, 'utf8');
+    assert.match(pageHtml, new RegExp(`<html lang="en" data-page="${page}" data-root="\\.\\.">`));
+    assert.match(pageHtml, new RegExp(`<title>[^<]+ \\| Diego Guevara<\\/title>`));
+    assert.match(pageHtml, new RegExp(`<link rel="canonical" href="${pageUrl}${page}/"\\s*/>`));
+    assert.match(pageHtml, /<meta name="description" content="[^"]+"\s*\/>/);
+    assert.match(pageHtml, /src="\.\.\/src\/main\.jsx"/);
+  }
+});

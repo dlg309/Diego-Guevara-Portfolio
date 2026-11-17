@@ -1,6 +1,6 @@
 # Diego Guevara — portfolio
 
-A portfolio for internship opportunities and selected coursework, built with React, HTML, CSS, and Vite. The matte black and navy design presents project cards and expandable case studies. Content is stored separately from the React components so it can be updated without redesigning the page. The site does not require a database, API keys, or analytics.
+A portfolio for internship opportunities and selected coursework, built with React, HTML, CSS, and Vite. Home, Work, Case Studies, Background, Experience, and Contact are separate static pages with shared navigation and styling. Content is stored separately from the React components so it can be updated without redesigning the pages. The site does not require a database, API keys, or analytics.
 
 ## Run it
 
@@ -25,7 +25,7 @@ For browser tests or generated PDF and social-image assets, install Chromium onc
 
 - `src/content/site.json`: name, two-line headline (`headline` and `headlineEmphasis`), introduction, professional focus, interests, grouped skills, experience, profile URLs, contact email, both résumé paths, and `projectOrder`. The `projectOrder` array controls the visible order of both cards and case studies. Add confirmed experience entries to the `experience` array using `title`, `organization`, optional `dates`, and `summary`.
 - `src/content/projects.json`: project labels, status, tags, `role`, `scope`, `verifiedContribution`, optional `proofLabel`, case-study sections, visuals, links, and an optional verified `demoUrl`. Add or remove sections as evidence becomes available. Keep `id` unique, short, and URL-safe; display numbers are derived from `projectOrder` in `site.json`. Use real links and describe your own contribution accurately. A section can include its own `links` array for evidence beside a claim.
-- `src/App.jsx`: React components, page structure, and some section headings and explanatory sentences. ALPFA is identified as a personal collaborative project, not the required IS218 customer project.
+- `src/App.jsx`: shared React components, page content, and some headings and explanatory sentences. Each page has its own `index.html` entry with title and sharing metadata. ALPFA is identified as a personal collaborative project, not the required IS218 customer project.
 - `src/style.css`: colors, font roles, 4px spacing scale, content widths, radii, motion, and shadows are CSS variables in `:root`; component and responsive rules follow. The single system-sans stack uses installed platform fonts; no font files or font services are loaded.
 - `docs/PORTFOLIO_RECORD.md`: concise public course record and review follow-up.
 - `docs/USER_RESEARCH.md`: a ready-to-use, pending plan for real-user testing.
@@ -36,7 +36,7 @@ JSON needs double quotes, commas between entries, and no trailing comma. For exa
 {"title":"Example role","organization":"Example organization","dates":"2025–2026","summary":"Replace with a verified contribution."}
 ```
 
-To add a project, copy an existing object in `projects.json`, change its unique `id`, text, sections, tags, and verified links, then add its ID to `projectOrder` in `site.json`. Remove unverified sections and links; an empty `links` array is fine. Rebuild and check the card and case study. Case-study links open their matching accordion, including direct `#project-id` URLs. Radix provides the accordion and modal navigation behavior; CSS handles background scroll locking so the production CSP can remain strict. Project cards render immediately without an animation runtime. Case-study detail code preloads as the section approaches and loads on demand if needed. For a collaborative case, explain what you did, what teammates did, and what remains planned. Add the required customer project only when its course status and evidence are known.
+To add a project, copy an existing object in `projects.json`, change its unique `id`, text, sections, tags, and verified links, then add its ID to `projectOrder` in `site.json`. Remove unverified sections and links; an empty `links` array is fine. Rebuild and check the card and case study. Project cards link to `/case-studies/#project-id`, which opens the matching accordion; old homepage fragments redirect to their new pages. Radix provides the accordion and modal navigation behavior; CSS handles background scroll locking so the production CSP can remain strict. Project cards render immediately without an animation runtime. Case-study detail code preloads as the section approaches and loads on demand if needed. For a collaborative case, explain what you did, what teammates did, and what remains planned. Add the required customer project only when its course status and evidence are known.
 
 ## Résumé, contact, and images
 

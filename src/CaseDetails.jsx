@@ -1,4 +1,4 @@
-import { ProjectMedia, TextLink } from './ProjectMedia';
+import { ProjectMedia, TextLink, siteHref } from './ProjectMedia';
 
 const stageNames = ['Problem', 'My contribution', 'What was built', 'Evidence and checks', 'Status and limitations'];
 const sectionStages = {
@@ -22,11 +22,11 @@ export default function CaseDetails({ project }) {
           <div className="case-sections">{stages.map((sectionIndex, index) => {
             const section = project.sections[sectionIndex];
             const isAlpfaEvidence = project.id === 'alpfa' && sectionIndex === null;
-            return <section key={stageNames[index]}><h4>{stageNames[index]}</h4>{isAlpfaEvidence ? <><p>The linked commits document my E-Board, headshot, and loading-screen work. Cross-device QA and production builds remain pending.</p>{project.sections[1].links?.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</> : <><p>{section.text}</p>{!(project.id === 'alpfa' && sectionIndex === 1) && section.links?.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</>}</section>;
+            return <section key={stageNames[index]}><h3>{stageNames[index]}</h3>{isAlpfaEvidence ? <><p>The linked commits document my E-Board, headshot, and loading-screen work. Cross-device QA and production builds remain pending.</p>{project.sections[1].links?.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</> : <><p>{section.text}</p>{!(project.id === 'alpfa' && sectionIndex === 1) && section.links?.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</>}</section>;
           })}</div>
         </div>
         {remainingLinks.length > 0 && <div className="case-links">{remainingLinks.map(link => <TextLink key={link.url} href={link.url}>{link.label}</TextLink>)}</div>}
-        <a className="back-link" href="#work">↑ Back to selected work</a>
+        <a className="back-link" href={siteHref('work/')}>↑ Back to selected work</a>
     </div>
   );
 }
