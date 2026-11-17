@@ -55,7 +55,8 @@ html::-webkit-scrollbar-thumb, .mobile-nav-panel::-webkit-scrollbar-thumb { bord
   html, .mobile-nav-panel { scrollbar-color: auto; scrollbar-width: auto; }
 }
 body { margin: 0; background: var(--bg); color: var(--text); font-size: 1.0625rem; line-height: 1.65; }
-main { overflow-x: clip; }
+/* Keep the shrinking sticky header from changing scrollY through scroll anchoring. */
+main { overflow-x: clip; overflow-anchor: none; }
 a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: .075em; }
 a:hover { color: var(--accent); }
 a, button, summary { -webkit-tap-highlight-color: #ffffff20; }
@@ -306,7 +307,7 @@ footer > a { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (min-width: 761px) {
   .site-header--scrolled .header-inner { min-height: 4rem; flex-direction: row; align-items: center; padding-block: var(--space-2); }
-  .site-header--scrolled .nav { position: absolute; top: 50%; right: 0; visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(calc(-50% - .4rem)); }
+  .site-header--scrolled .nav { position: absolute; top: 50%; right: 0; visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(calc(-50% - .4rem)); transition: none; }
   .site-header--scrolled .header-resume { margin-left: auto; margin-right: calc(44px + var(--space-4)); }
   .site-header--scrolled .menu-toggle { width: 44px; justify-content: center; padding-inline: var(--space-2); }
   .site-header--scrolled .menu-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }

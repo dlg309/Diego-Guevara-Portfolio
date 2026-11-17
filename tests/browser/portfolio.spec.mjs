@@ -137,3 +137,19 @@ test('keyboard navigation, compact header, and mobile focus return', async ({ pa
   await expect(page.getByRole('button', { name: 'Open navigation menu' })).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
+
+test('header transition stays stable around the scroll threshold', async ({ page }) => {
+  await page.setViewportSize({ width: 900, height: 900 });
+  await page.goto('./');
+  const header = page.locator('.site-header');
+  for (const [position, compact] of [[119, false], [121, true], [119, false], [121, true]]) {
+    await page.evaluate(y => window.scrollTo({ top: y, behavior: 'instant' }), position);
+    await expect(header).toHaveClass(compact ? /site-header--scrolled/ : /^site-header$/);
+    await page.waitForTimeout(300);
+    expect(await page.evaluate(() => Math.round(window.scrollY))).toBe(position);
+    await expect(header).toHaveClass(compact ? /site-header--scrolled/ : /^site-header$/);
+  }
+  await expect(page.getByRole('button', { name: 'Open navigation menu' })).toBeVisible();
+  await page.getByRole('button', { name: 'Open navigation menu' }).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+});
