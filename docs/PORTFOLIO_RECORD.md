@@ -54,3 +54,27 @@ Do not fill these fields until the review and retest happen. The required course
 ## Public and private boundary
 
 This file contains only material intended for public sharing. Role comparisons, eligibility, and personal reflection belong in an ignored local `private/` file, not the site or public project record.
+
+
+## Review 2 — first working slice (draft, November 26, 2026)
+
+- **Work/site:** [current portfolio](https://dlg309.github.io/Diego-Guevara-Portfolio/); [two layout options](https://dlg309.github.io/Diego-Guevara-Portfolio/layout-options/?view=cards) (available after this branch is deployed). Both options render the same project and profile content from `src/content/site.json` and `src/content/projects.json`. The cards emphasize a short contribution beside each project; the compact index supports scanning the full list.
+- **Creative case:** [Echo Mountain case study](https://dlg309.github.io/Diego-Guevara-Portfolio/case-studies/#echo-mountain) and [repository](https://github.com/dlg309/Echo-Mountain). The browser prototype is labeled in development. Tempo is also labeled as a rebuild in progress.
+- **Collaborative case:** [ALPFA NJIT App case study](https://dlg309.github.io/Diego-Guevara-Portfolio/case-studies/#alpfa) links to the partner-owned repository and Diego's documented commits. It is **not** the required IS218 customer studio case.
+- **Required group customer case:** pending confirmation of the chosen customer, Diego's contribution, repository, and checks. Add the actual case before claiming this checkpoint complete.
+- **Résumé and profiles:** the site links the [one-page résumé draft](https://dlg309.github.io/Diego-Guevara-Portfolio/Diego_Guevara_Resume_One_Page.pdf), [GitHub](https://github.com/dlg309), and [LinkedIn](https://www.linkedin.com/in/diegoguevara2093).
+- **Changed:** added a public comparison page whose two layouts share the same source content and links.
+- **Checked:** source paths and case-study destinations were reviewed. Automated build/browser results for this branch remain pending; no classmate review or retest is claimed.
+- **Next:** confirm and add the IS218 group case; have a classmate find projects, résumé, GitHub, and LinkedIn; record the actual issue, change, and retest below. Keep the full career reflection in private Canvas.
+
+### Classmate task and outcome
+
+Ask: “Starting at the homepage, find a creative project and the group customer project. Show me my résumé, GitHub, and LinkedIn. Which layout helps you find them?”
+
+- Reviewer code / date:
+- First attempt: what they found, where they hesitated, and any help:
+- Issue link:
+- Change link:
+- Retest / date / what they found:
+
+Leave these blank until a real classmate completes the task and retest.
