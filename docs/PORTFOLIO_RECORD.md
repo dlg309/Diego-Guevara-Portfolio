@@ -64,8 +64,8 @@ This file contains only material intended for public sharing. Role comparisons, 
 - **Required group customer case:** pending confirmation of the chosen customer, Diego's contribution, repository, and checks. Add the actual case before claiming this checkpoint complete.
 - **Résumé and profiles:** the site links the [one-page résumé draft](https://dlg309.github.io/Diego-Guevara-Portfolio/Diego_Guevara_Resume_One_Page.pdf), [GitHub](https://github.com/dlg309), and [LinkedIn](https://www.linkedin.com/in/diegoguevara2093).
 - **Changed:** added a public comparison page whose two layouts share the same source content and links.
-- **Checked:** source paths and case-study destinations were reviewed. Automated build/browser results for this branch remain pending; no classmate review or retest is claimed.
-- **Next:** confirm and add the IS218 group case; have a classmate find projects, résumé, GitHub, and LinkedIn; record the actual issue, change, and retest below. Keep the full career reflection in private Canvas.
+- **Checked:** source paths and case-study destinations were reviewed. On November 26, PR #16 passed Verify portfolio (content, unit tests, audit, build, and size), Dead code and bundle budget, Browser and accessibility checks (including the new two-view link and overflow check), and CodeQL. No classmate review or retest is claimed.
+- **Change/check link:** [Review 2 pull request and checks](https://github.com/dlg309/Diego-Guevara-Portfolio/pull/16). The aggregate CSS budget is 8 kB for the additional comparison route; its measured CSS was 6.81 kB gzip before the final browser test commit.\n- **Next:** confirm and add the IS218 group case; have a classmate find projects, résumé, GitHub, and LinkedIn; record the actual issue, change, and retest below. Keep the full career reflection in private Canvas.
 
 ### Classmate task and outcome
 
