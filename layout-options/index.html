@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090d15" />
+  <meta name="description" content="Compare two small layouts using the same verified portfolio content." />
+  <title>Portfolio layout options | Diego Guevara</title>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="../">DG. <span>Diego Guevara</span></a>
+      <nav aria-label="Portfolio links"><a href="../work/">Work</a><a href="../case-studies/">Case studies</a><a href="../contact/">Contact</a></nav>
+    </div>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">
+    <div class="intro">
+      <p class="eyebrow">IS218 · Portfolio layout comparison</p>
+      <h1>One set of work. Two ways to browse it.</h1>
+      <p>The project facts, links, and résumé are shared by both views. Choose the layout that makes the work easiest to find.</p>
+      <div class="switch" role="group" aria-label="Choose a layout">
+        <button type="button" id="cards" aria-pressed="true">A · Project cards</button>
+        <button type="button" id="index" aria-pressed="false">B · Project index</button>
+      </div>
+    </div>
+    <section class="profile" aria-labelledby="profile-title">
+      <div><p class="eyebrow">About</p><h2 id="profile-title"></h2><p id="profile-intro"></p></div>
+      <div class="profile-links" id="profile-links"></div>
+    </section>
+    <section aria-labelledby="projects-title">
+      <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2 id="projects-title">Projects and case studies</h2></div><p id="layout-description" aria-live="polite"></p></div>
+      <div id="projects" class="projects cards"></div>
+    </section>
+    <aside class="pending" aria-labelledby="group-title">
+      <p class="eyebrow">IS218 group customer studio</p>
+      <h2 id="group-title">Group case study · pending project evidence</h2>
+      <p>The required group customer project will be added when its team, customer, individual contribution, repository, and checks are confirmed. The ALPFA NJIT app above is a separate collaborative project.</p>
+    </aside>
+  </main>
+  <footer class="wrap"><a href="../">Return to portfolio</a><span>Layout draft for classmate review</span></footer>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
