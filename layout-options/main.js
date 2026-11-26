@@ -1,5 +1,6 @@
 import site from '../src/content/site.json';
 import projects from '../src/content/projects.json';
+import '../src/style.css';
 import './style.css';
 
 const ordered = site.projectOrder
