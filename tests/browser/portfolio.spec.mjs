@@ -179,3 +179,22 @@ test('header transition stays stable around the scroll threshold', async ({ page
   await expect(page).toHaveURL(/\/background\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('A business lens.');
 });
+
+
+test('layout options keep the same project and profile links', async ({ page, request }) => {
+  await page.goto('./layout-options/?view=cards');
+  const headings = await page.locator('#projects h3').allTextContents();
+  expect(headings).toHaveLength(site.projectOrder.length);
+  await expect(page.getByRole('link', { name: 'GitHub profile' })).toHaveAttribute('href', site.github);
+  await expect(page.getByRole('link', { name: 'LinkedIn profile' })).toHaveAttribute('href', site.linkedin);
+  const resume = page.getByRole('link', { name: 'Résumé draft (PDF)' });
+  const response = await request.get(new URL(await resume.getAttribute('href'), page.url()).href);
+  expect(response.ok()).toBe(true);
+  await page.getByRole('button', { name: 'B · Project index' }).click();
+  await expect(page.locator('#projects')).toHaveClass(/index/);
+  await expect(page.getByRole('button', { name: 'B · Project index' })).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.locator('#projects h3').allTextContents()).toEqual(headings);
+  await expect(page.locator('#projects .project-links a').first()).toHaveAttribute('href', '../case-studies/#alpfa');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+});
