@@ -58,7 +58,7 @@ export default defineConfig({
   preview: { host: '127.0.0.1' },
   build: {
     rolldownOptions: {
-      input: Object.fromEntries(['', 'work', 'case-studies', 'background', 'experience', 'contact'].map(page => [page || 'home', resolve(import.meta.dirname, page, 'index.html')])),
+      input: Object.fromEntries(['', 'work', 'case-studies', 'background', 'experience', 'contact', 'layout-options'].map(page => [page || 'home', resolve(import.meta.dirname, page, 'index.html')])),
     },
   },
 });
